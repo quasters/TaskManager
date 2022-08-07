@@ -10,20 +10,19 @@ import UIKit
 class MainVC: UIViewController {
     var viewModel: MainVMProtocol?
     
-    var headerView: HeaderView?
-    var daySegment: DaySegmentControl?
+    private var headerView: HeaderView?
+    private var daySegment: TasksSegmentControl?
+    private var addButton: UIButton?
+    
+    private let sideIndent: Double = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setHeader()
         setTabs()
+        setAddButton()
     }
-    
-    func bindViewModel() {
         
-    }
-    
     private func setHeader() {
         headerView = HeaderView()
         guard let headerView = headerView else { return }
@@ -31,8 +30,8 @@ class MainVC: UIViewController {
 
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            headerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
+            headerView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: sideIndent),
+            headerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -sideIndent),
             headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 70)
         ])
@@ -41,12 +40,11 @@ class MainVC: UIViewController {
     }
     
     private func setTabs() {
-        daySegment = DaySegmentControl()
-        daySegment?.tabTitles = ["Today", "Upcoming", "Done", "Failed"]
-        let segmentHeight = 26.0
-        
+        daySegment = TasksSegmentControl()
         guard let daySegment = daySegment else { return }
-        daySegment.cornerRadius = segmentHeight / 2
+        
+        let segmentHeight = 26.0
+
         daySegment.layer.cornerRadius = segmentHeight / 2
         daySegment.layer.masksToBounds = true
         self.view.addSubview(daySegment)
@@ -55,12 +53,35 @@ class MainVC: UIViewController {
         daySegment.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             daySegment.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20),
-            daySegment.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            daySegment.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
+            daySegment.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: sideIndent),
+            daySegment.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -sideIndent),
             daySegment.heightAnchor.constraint(equalToConstant: segmentHeight)
         ])
         
-        daySegment.update()
+        let tabs = ["Today", "Upcoming", "Task Done", "Failed"]
+        let width = self.view.frame.width - (sideIndent * 2)
+        daySegment.configurate(tabTitles: tabs, cornerRadius: segmentHeight / 2, width: width)
+    }
+    
+    private func setAddButton() {
+        addButton = UIButton()
+        guard let addButton = addButton else { return }
+        
+        addButton.backgroundColor = .black
+        
+        //addButton.setTitle("Add task", for: .normal)
+        addButton.titleLabel?.text = "Add task"
+        addButton.titleLabel?.textColor = .white
+        addButton.titleLabel?.font = .systemFont(ofSize: 20)
+        self.view.addSubview(addButton)
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            addButton.heightAnchor.constraint(equalToConstant: 30),
+            addButton.widthAnchor.constraint(equalToConstant: 100),
+            addButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
 
