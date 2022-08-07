@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         router.initialViewConroller()
 
         window?.rootViewController = navController
-        window?.backgroundColor  = .white
+        window?.backgroundColor  = .systemBackground
         window?.makeKeyAndVisible()
     }
 

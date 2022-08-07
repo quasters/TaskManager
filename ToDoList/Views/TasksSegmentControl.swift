@@ -51,7 +51,7 @@ class TasksSegmentControl: UIView {
     
     private func setUpSelector() {
         selector.frame = CGRect(x: 0, y: 0, width: width / Double(buttons.count), height: cornerRadius * 2)
-        selector.backgroundColor = .black
+        selector.backgroundColor = UIColor(named: "blackAdaptive")
         selector.layer.cornerRadius = cornerRadius
         selector.layer.masksToBounds = false
         
@@ -64,9 +64,9 @@ class TasksSegmentControl: UIView {
         for (index, title) in tabTitles.enumerated() {
             let button = UIButton(type: .system)
             if index == 0 {
-                button.setTitleColor(.white, for: .normal)
+                button.setTitleColor(.systemBackground, for: .normal)
             } else {
-                button.setTitleColor(.black, for: .normal)
+                button.setTitleColor(UIColor(named: "blackAdaptive"), for: .normal)
             }
             button.tag = index
             button.setTitle(title, for: .normal)
@@ -78,8 +78,8 @@ class TasksSegmentControl: UIView {
         for button in buttons {
             button.rx.tap.subscribe { [weak self] event in
                 guard let self = self else { return }
-                self.buttons.map { $0.setTitleColor(.black, for: .normal) }
-                button.setTitleColor(.white, for: .normal)
+                self.buttons.map { $0.setTitleColor(UIColor(named: "blackAdaptive"), for: .normal) }
+                button.setTitleColor(.systemBackground, for: .normal)
                 let selectorPosition = self.width / Double(self.buttons.count) * Double(button.tag)
                 UIView.animate(withDuration: 0.3) {
                     self.selector.frame.origin.x = selectorPosition

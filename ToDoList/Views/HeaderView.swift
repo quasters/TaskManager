@@ -22,7 +22,6 @@ class HeaderView: UIView {
     
     private func setText() {
         let hour = Calendar.current.component(.hour, from: Date())
-        print(hour)
         
         var text = "Welcome back!"
         if hour >= 6 && hour < 11 {

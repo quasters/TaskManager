@@ -22,7 +22,8 @@ class BottomButtonView: UIView {
         guard let button = button else { return }
 
         var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = .black
+        configuration.baseBackgroundColor = UIColor(named: "blackAdaptive")
+        configuration.baseForegroundColor = .systemBackground
         configuration.cornerStyle = .capsule
         configuration.title = "Add task"
         configuration.image = UIImage(systemName: "plus.app.fill")

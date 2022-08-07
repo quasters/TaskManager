@@ -24,6 +24,8 @@
 		D1A5D35D28A009D300FA9D25 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D35C28A009D300FA9D25 /* HeaderView.swift */; };
 		D1A5D36128A032D500FA9D25 /* TasksSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36028A032D500FA9D25 /* TasksSegmentControl.swift */; };
 		D1A5D36328A0708500FA9D25 /* BottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36228A0708500FA9D25 /* BottomButtonView.swift */; };
+		D1A5D36528A07B8C00FA9D25 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36428A07B8C00FA9D25 /* TaskListView.swift */; };
+		D1A5D36728A0825B00FA9D25 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36628A0825B00FA9D25 /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		D1A5D35C28A009D300FA9D25 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		D1A5D36028A032D500FA9D25 /* TasksSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksSegmentControl.swift; sourceTree = "<group>"; };
 		D1A5D36228A0708500FA9D25 /* BottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonView.swift; sourceTree = "<group>"; };
+		D1A5D36428A07B8C00FA9D25 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		D1A5D36628A0825B00FA9D25 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,8 @@
 				D1A5D35C28A009D300FA9D25 /* HeaderView.swift */,
 				D1A5D36028A032D500FA9D25 /* TasksSegmentControl.swift */,
 				D1A5D36228A0708500FA9D25 /* BottomButtonView.swift */,
+				D1A5D36428A07B8C00FA9D25 /* TaskListView.swift */,
+				D1A5D36628A0825B00FA9D25 /* TaskCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			files = (
 				D1A5D36128A032D500FA9D25 /* TasksSegmentControl.swift in Sources */,
 				D1A5D36328A0708500FA9D25 /* BottomButtonView.swift in Sources */,
+				D1A5D36528A07B8C00FA9D25 /* TaskListView.swift in Sources */,
 				D1A5D358289FF74700FA9D25 /* Router.swift in Sources */,
 				D1A5D356289FF69700FA9D25 /* AsselderBuilder.swift in Sources */,
 				D1A5D354289FF60000FA9D25 /* RouterProtocol.swift in Sources */,
@@ -302,6 +309,7 @@
 				D1A5D333289EAACF00FA9D25 /* MainVC.swift in Sources */,
 				D1A5D35D28A009D300FA9D25 /* HeaderView.swift in Sources */,
 				D1A5D350289EB1E100FA9D25 /* Dynamic.swift in Sources */,
+				D1A5D36728A0825B00FA9D25 /* TaskCell.swift in Sources */,
 				D1A5D32F289EAACF00FA9D25 /* AppDelegate.swift in Sources */,
 				D1A5D331289EAACF00FA9D25 /* SceneDelegate.swift in Sources */,
 				D1A5D339289EAACF00FA9D25 /* ToDoList.xcdatamodeld in Sources */,

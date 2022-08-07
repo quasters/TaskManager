@@ -12,6 +12,7 @@ class MainVC: UIViewController {
     
     private var headerView: HeaderView?
     private var daySegment: TasksSegmentControl?
+    private var listView: TaskListView?
     private var bottomButtonView: BottomButtonView?
     
     private let sideIndent: Double = 10
@@ -20,6 +21,7 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         setHeader()
         setTabs()
+        setList()
         setAddButton()
     }
         
@@ -61,6 +63,23 @@ class MainVC: UIViewController {
         let tabs = ["Today", "Upcoming", "Task Done", "Failed"]
         let width = self.view.frame.width - (sideIndent * 2)
         daySegment.configurate(tabTitles: tabs, cornerRadius: segmentHeight / 2, width: width)
+    }
+    
+    private func setList() {
+        listView = TaskListView()
+        guard let listView = listView else { return }
+        self.view.addSubview(listView)
+        
+        guard let daySegment = daySegment else { return }
+        listView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            listView.topAnchor.constraint(equalTo: daySegment.bottomAnchor, constant: 27),
+            listView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            listView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: sideIndent),
+            listView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -sideIndent),
+        ])
+        
+        listView.configure()
     }
     
     private func setAddButton() {
