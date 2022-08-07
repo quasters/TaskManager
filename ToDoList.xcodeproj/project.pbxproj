@@ -23,6 +23,7 @@
 		D1A5D358289FF74700FA9D25 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D357289FF74700FA9D25 /* Router.swift */; };
 		D1A5D35D28A009D300FA9D25 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D35C28A009D300FA9D25 /* HeaderView.swift */; };
 		D1A5D36128A032D500FA9D25 /* TasksSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36028A032D500FA9D25 /* TasksSegmentControl.swift */; };
+		D1A5D36328A0708500FA9D25 /* BottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36228A0708500FA9D25 /* BottomButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		D1A5D357289FF74700FA9D25 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D1A5D35C28A009D300FA9D25 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		D1A5D36028A032D500FA9D25 /* TasksSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksSegmentControl.swift; sourceTree = "<group>"; };
+		D1A5D36228A0708500FA9D25 /* BottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				D1A5D332289EAACF00FA9D25 /* MainVC.swift */,
 				D1A5D35C28A009D300FA9D25 /* HeaderView.swift */,
 				D1A5D36028A032D500FA9D25 /* TasksSegmentControl.swift */,
+				D1A5D36228A0708500FA9D25 /* BottomButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1A5D36128A032D500FA9D25 /* TasksSegmentControl.swift in Sources */,
+				D1A5D36328A0708500FA9D25 /* BottomButtonView.swift in Sources */,
 				D1A5D358289FF74700FA9D25 /* Router.swift in Sources */,
 				D1A5D356289FF69700FA9D25 /* AsselderBuilder.swift in Sources */,
 				D1A5D354289FF60000FA9D25 /* RouterProtocol.swift in Sources */,

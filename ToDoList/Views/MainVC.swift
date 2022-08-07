@@ -12,7 +12,7 @@ class MainVC: UIViewController {
     
     private var headerView: HeaderView?
     private var daySegment: TasksSegmentControl?
-    private var addButton: UIButton?
+    private var bottomButtonView: BottomButtonView?
     
     private let sideIndent: Double = 10
     
@@ -64,24 +64,23 @@ class MainVC: UIViewController {
     }
     
     private func setAddButton() {
-        addButton = UIButton()
-        guard let addButton = addButton else { return }
+        bottomButtonView = BottomButtonView()
+        guard let bottomButtonView = bottomButtonView else { return }
         
-        addButton.backgroundColor = .black
+        let height: Double = 36
+        bottomButtonView.height = height
         
-        //addButton.setTitle("Add task", for: .normal)
-        addButton.titleLabel?.text = "Add task"
-        addButton.titleLabel?.textColor = .white
-        addButton.titleLabel?.font = .systemFont(ofSize: 20)
-        self.view.addSubview(addButton)
+        self.view.addSubview(bottomButtonView)
         
-        addButton.translatesAutoresizingMaskIntoConstraints = false
+        bottomButtonView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            addButton.heightAnchor.constraint(equalToConstant: 30),
-            addButton.widthAnchor.constraint(equalToConstant: 100),
-            addButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            bottomButtonView.heightAnchor.constraint(equalToConstant: height),
+            bottomButtonView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/3),
+            bottomButtonView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            bottomButtonView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        bottomButtonView.configure()
     }
 }
 
