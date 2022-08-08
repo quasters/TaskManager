@@ -14,12 +14,13 @@ class TaskListView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(TaskCell.self, forCellReuseIdentifier: "Cell")
+        tableView.separatorStyle = .none
         
         self.addSubview(tableView)
         setConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.heightAnchor.constraint(equalTo: self.heightAnchor),
@@ -28,9 +29,13 @@ class TaskListView: UIView {
     }
 }
 
-extension TaskListView: UITableViewDataSource {
+extension TaskListView: UITableViewDataSource, UITableViewDelegate {    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 25
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,10 +43,5 @@ extension TaskListView: UITableViewDataSource {
         cell.configure()
         return cell
     }
-    
-
-}
-
-extension TaskListView: UITableViewDelegate {
     
 }

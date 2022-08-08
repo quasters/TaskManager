@@ -8,12 +8,24 @@
 import UIKit
 
 class TaskCell: UITableViewCell {
+    let view = UIView()
+    
     func configure() {
-        self.backgroundColor = .systemYellow
-        self.layer.cornerRadius = 5
+        self.selectionStyle = .none
+        
+        view.backgroundColor = .yellow
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = false
+        self.addSubview(view)
+        setConstraints()
     }
     
-    func setConstraints() {
-        
+    private func setConstraints() {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.widthAnchor.constraint(equalTo: self.widthAnchor),
+            view.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
+        ])
     }
 }
