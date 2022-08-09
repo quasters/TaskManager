@@ -26,6 +26,8 @@
 		D1A5D36328A0708500FA9D25 /* BottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36228A0708500FA9D25 /* BottomButtonView.swift */; };
 		D1A5D36528A07B8C00FA9D25 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36428A07B8C00FA9D25 /* TaskListView.swift */; };
 		D1A5D36728A0825B00FA9D25 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D36628A0825B00FA9D25 /* TaskCell.swift */; };
+		D1E76BD828A11C46005CD21D /* CreatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E76BD728A11C46005CD21D /* CreatorVC.swift */; };
+		D1E76BDC28A11C72005CD21D /* CreatorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E76BDB28A11C72005CD21D /* CreatorVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		D1A5D36228A0708500FA9D25 /* BottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonView.swift; sourceTree = "<group>"; };
 		D1A5D36428A07B8C00FA9D25 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		D1A5D36628A0825B00FA9D25 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		D1E76BD728A11C46005CD21D /* CreatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorVC.swift; sourceTree = "<group>"; };
+		D1E76BDB28A11C72005CD21D /* CreatorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				D1A5D35928A003EC00FA9D25 /* App */,
-				D1A5D348289EAE2B00FA9D25 /* ViewModels */,
-				D1A5D349289EAE4000FA9D25 /* Views */,
+				D1E76BD528A11BAA005CD21D /* MainModule */,
+				D1E76BD628A11BE9005CD21D /* CreatorModule */,
 				D1A5D345289EAE1100FA9D25 /* Models */,
 				D1A5D33A289EAAD100FA9D25 /* Assets.xcassets */,
 				D1A5D33C289EAAD100FA9D25 /* LaunchScreen.storyboard */,
@@ -173,6 +177,40 @@
 				D1A5D353289FF60000FA9D25 /* RouterProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D1E76BD528A11BAA005CD21D /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				D1A5D348289EAE2B00FA9D25 /* ViewModels */,
+				D1A5D349289EAE4000FA9D25 /* Views */,
+			);
+			path = MainModule;
+			sourceTree = "<group>";
+		};
+		D1E76BD628A11BE9005CD21D /* CreatorModule */ = {
+			isa = PBXGroup;
+			children = (
+				D1E76BD928A11C4D005CD21D /* ViewModels */,
+				D1E76BDA28A11C56005CD21D /* Views */,
+			);
+			path = CreatorModule;
+			sourceTree = "<group>";
+		};
+		D1E76BD928A11C4D005CD21D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D1E76BDB28A11C72005CD21D /* CreatorVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D1E76BDA28A11C56005CD21D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D1E76BD728A11C46005CD21D /* CreatorVC.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E76D96D4AF9B8C528A750CC4 /* Frameworks */ = {
@@ -304,9 +342,11 @@
 				D1A5D356289FF69700FA9D25 /* AsselderBuilder.swift in Sources */,
 				D1A5D354289FF60000FA9D25 /* RouterProtocol.swift in Sources */,
 				D1A5D352289FECA700FA9D25 /* AsselderBuilderProtocol.swift in Sources */,
+				D1E76BDC28A11C72005CD21D /* CreatorVM.swift in Sources */,
 				D1A5D34B289EAFC600FA9D25 /* Item.swift in Sources */,
 				D1A5D34D289EB1AE00FA9D25 /* MainVM.swift in Sources */,
 				D1A5D333289EAACF00FA9D25 /* MainVC.swift in Sources */,
+				D1E76BD828A11C46005CD21D /* CreatorVC.swift in Sources */,
 				D1A5D35D28A009D300FA9D25 /* HeaderView.swift in Sources */,
 				D1A5D350289EB1E100FA9D25 /* Dynamic.swift in Sources */,
 				D1A5D36728A0825B00FA9D25 /* TaskCell.swift in Sources */,

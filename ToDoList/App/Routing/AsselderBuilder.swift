@@ -9,14 +9,16 @@ import UIKit
 
 class AsselderBuilder: AsselderBuilderProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController {
-        let viewModel = MainVM()
+        let viewModel = MainVM(router: router)
         let viewController = MainVC()
         viewController.viewModel = viewModel
         return viewController
     }
     
-    func createEditModule(router: RouterProtocol) -> UIViewController  {
-        
-        return UIViewController()
+    func createCreatorModule(router: RouterProtocol) -> UIViewController  {
+        let viewModel = CreatorVM()
+        let viewController = CreatorVC()
+        viewController.viewModel = viewModel
+        return viewController
     }
 }

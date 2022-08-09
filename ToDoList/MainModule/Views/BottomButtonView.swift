@@ -6,21 +6,20 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class BottomButtonView: UIView {
-    var button: UIButton?
+    var button = UIButton()
     var height: Double = 36
     
     func configure() {
-        button = UIButton()
         setUpButton()
-        self.addSubview(button!)
+        self.addSubview(button)
         setConstraints()
     }
     
     private func setUpButton() {
-        guard let button = button else { return }
-
         var configuration = UIButton.Configuration.filled()
         configuration.baseBackgroundColor = UIColor(named: "blackAdaptive")
         configuration.baseForegroundColor = .systemBackground
@@ -36,12 +35,10 @@ class BottomButtonView: UIView {
     }
     
     private func setConstraints() {
-        if let button = button {
-            button.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                button.heightAnchor.constraint(equalTo: self.heightAnchor),
-                button.widthAnchor.constraint(equalTo: self.widthAnchor)
-            ])
-        }
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalTo: self.heightAnchor),
+            button.widthAnchor.constraint(equalTo: self.widthAnchor)
+        ])
     }
 }

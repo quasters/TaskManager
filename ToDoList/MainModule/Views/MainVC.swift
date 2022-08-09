@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class MainVC: UIViewController {
     var viewModel: MainVMProtocol?
@@ -14,6 +15,8 @@ class MainVC: UIViewController {
     private var daySegment: TasksSegmentControl?
     private var listView: TaskListView?
     private var bottomButtonView: BottomButtonView?
+    
+    private let disposeBag = DisposeBag()
     
     private let sideIndent: Double = 10
     
@@ -100,6 +103,10 @@ class MainVC: UIViewController {
         ])
         
         bottomButtonView.configure()
+        
+        bottomButtonView.button.rx.tap.bind { [weak self] in
+            self?.viewModel?.swiftchToCreatorModule()
+        }.disposed(by: disposeBag)
     }
 }
 

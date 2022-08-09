@@ -8,8 +8,8 @@
 import UIKit
 
 class Router: RouterProtocol {
-    var navController: UINavigationController?
-    var builder: AsselderBuilder?
+    private var navController: UINavigationController?
+    private var builder: AsselderBuilder?
     
     init(navController: UINavigationController, builder: AsselderBuilder) {
         self.navController = navController
@@ -23,8 +23,13 @@ class Router: RouterProtocol {
         }
     }
     
-    func editModule() {
-        
+    func creatorModule() {
+        if let navController = navController {
+            guard let creatorVC = builder?.createCreatorModule(router: self) else { return }
+            creatorVC.modalPresentationStyle = .popover
+            let first = navController.viewControllers.first
+            first?.present(creatorVC, animated: true)
+        }
     }
     
     func popToRoot() {

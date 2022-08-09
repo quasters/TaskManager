@@ -13,9 +13,8 @@ class TaskListView: UIView {
     func configure() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(TaskCell.self, forCellReuseIdentifier: "Cell")
         tableView.separatorStyle = .none
-        
+
         self.addSubview(tableView)
         setConstraints()
     }
@@ -31,7 +30,7 @@ class TaskListView: UIView {
 
 extension TaskListView: UITableViewDataSource, UITableViewDelegate {    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 180
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

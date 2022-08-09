@@ -7,11 +7,8 @@
 
 import UIKit
 
-protocol RouterProtocol {
-    var navController: UINavigationController? { get set }
-    var builder: AsselderBuilder? { get set }
-    
+protocol RouterProtocol {    
     func initialViewConroller()
-    func editModule()
+    func creatorModule()
     func popToRoot()
 }
