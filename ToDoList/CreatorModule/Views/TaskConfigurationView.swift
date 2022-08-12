@@ -56,6 +56,10 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
             let cell = ColorPickerCell()
             cell.configure(radius: 15)
             return cell
+        case 2:
+            let cell = TaskTitleCell()
+            cell.configure()
+            return cell
         case 3:
             let cell = TaskTypeCell()
             cell.configure()

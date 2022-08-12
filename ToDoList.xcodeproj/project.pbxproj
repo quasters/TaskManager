@@ -32,6 +32,7 @@
 		D1AC201828A5B7CF00AA6D17 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC201728A5B7CF00AA6D17 /* ColorPickerCell.swift */; };
 		D1AC201A28A5BD4300AA6D17 /* TaskTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC201928A5BD4300AA6D17 /* TaskTypeCell.swift */; };
 		D1AC201C28A5E3C800AA6D17 /* TaskColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC201B28A5E3C800AA6D17 /* TaskColor.swift */; };
+		D1AC201E28A613AC00AA6D17 /* TaskTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC201D28A613AC00AA6D17 /* TaskTitleCell.swift */; };
 		D1E76BD828A11C46005CD21D /* CreatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E76BD728A11C46005CD21D /* CreatorVC.swift */; };
 		D1E76BDC28A11C72005CD21D /* CreatorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E76BDB28A11C72005CD21D /* CreatorVM.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		D1AC201728A5B7CF00AA6D17 /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
 		D1AC201928A5BD4300AA6D17 /* TaskTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTypeCell.swift; sourceTree = "<group>"; };
 		D1AC201B28A5E3C800AA6D17 /* TaskColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskColor.swift; sourceTree = "<group>"; };
+		D1AC201D28A613AC00AA6D17 /* TaskTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTitleCell.swift; sourceTree = "<group>"; };
 		D1E76BD728A11C46005CD21D /* CreatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorVC.swift; sourceTree = "<group>"; };
 		D1E76BDB28A11C72005CD21D /* CreatorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +234,7 @@
 				D1E76BD728A11C46005CD21D /* CreatorVC.swift */,
 				D1AC201328A5AA0B00AA6D17 /* TaskConfigurationView.swift */,
 				D1AC201728A5B7CF00AA6D17 /* ColorPickerCell.swift */,
+				D1AC201D28A613AC00AA6D17 /* TaskTitleCell.swift */,
 				D1AC201928A5BD4300AA6D17 /* TaskTypeCell.swift */,
 			);
 			path = Views;
@@ -367,6 +370,7 @@
 				D1A5D356289FF69700FA9D25 /* AsselderBuilder.swift in Sources */,
 				D1A5D354289FF60000FA9D25 /* RouterProtocol.swift in Sources */,
 				D1A5D352289FECA700FA9D25 /* AsselderBuilderProtocol.swift in Sources */,
+				D1AC201E28A613AC00AA6D17 /* TaskTitleCell.swift in Sources */,
 				D1E76BDC28A11C72005CD21D /* CreatorVM.swift in Sources */,
 				D1AC200D28A59AAC00AA6D17 /* Task+CoreDataClass.swift in Sources */,
 				D1A5D34D289EB1AE00FA9D25 /* MainVM.swift in Sources */,

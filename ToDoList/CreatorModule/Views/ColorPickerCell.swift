@@ -47,9 +47,9 @@ class ColorPickerCell: UITableViewCell {
             button.layer.cornerRadius = radius
             button.layer.masksToBounds = false
             button.backgroundColor = color.getColor()
-            button.layer.borderColor = .init(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+            button.layer.borderColor = UIColor(named: "blackAdaptive")?.cgColor
             if index == 0 {
-                button.layer.borderWidth = 2
+                button.layer.borderWidth = 1
             }
             button.tag = index
             colorButtons.append(button)
@@ -62,7 +62,7 @@ class ColorPickerCell: UITableViewCell {
             colorButton.rx.tap.subscribe { [weak self] event in
                 guard let self = self else { return }
                 self.colorButtons.map { $0.layer.borderWidth = 0 }
-                colorButton.layer.borderWidth = 2
+                colorButton.layer.borderWidth = 1
             }.disposed(by: disposeBag)
         }
     }
