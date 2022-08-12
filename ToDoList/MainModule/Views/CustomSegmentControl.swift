@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TasksSegmentControl: UIView {
+class CustomSegmentControl: UIView {
     private var tabTitles: [String]?
-    private var cornerRadius: Double = 0
+    private var height: Double = 0
     private var width: Double = 0
     
     private var buttons = [UIButton]()
@@ -19,14 +19,14 @@ class TasksSegmentControl: UIView {
     
     var disposeBag = DisposeBag()
     
-    func configurate(tabTitles: [String], cornerRadius: Double, width: Double) {
+    func configurate(tabTitles: [String], height: Double, width: Double) {
         self.tabTitles = tabTitles
-        self.cornerRadius = cornerRadius
+        self.height = height
         self.width = width
-        update()
+        setUpSegmentControl()
     }
     
-    private func update() {
+    private func setUpSegmentControl() {
         setUpButtons()
         setUpSelector()
         setUpStack()
@@ -38,21 +38,14 @@ class TasksSegmentControl: UIView {
         stack.axis = .horizontal
         stack.alignment = .fill
         stack.distribution = .fillEqually
-        addSubview(stack)
-        
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stack.leftAnchor.constraint(equalTo: self.leftAnchor),
-            stack.rightAnchor.constraint(equalTo: self.rightAnchor),
-            stack.topAnchor.constraint(equalTo: self.topAnchor),
-            stack.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
+        stack.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        self.addSubview(stack)
     }
     
     private func setUpSelector() {
-        selector.frame = CGRect(x: 0, y: 0, width: width / Double(buttons.count), height: cornerRadius * 2)
+        selector.frame = CGRect(x: 0, y: 0, width: width / Double(buttons.count), height: height)
         selector.backgroundColor = UIColor(named: "blackAdaptive")
-        selector.layer.cornerRadius = cornerRadius
+        selector.layer.cornerRadius = height / 2
         selector.layer.masksToBounds = false
         
         self.addSubview(selector)

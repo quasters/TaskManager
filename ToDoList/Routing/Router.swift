@@ -18,17 +18,19 @@ class Router: RouterProtocol {
     
     func initialViewConroller() {
         if let navController = navController {
-            guard let mainVC = builder?.createMainModule(router: self) else { return }
-            navController.viewControllers = [mainVC]
+            guard let creatorVC = builder?.createCreatorModule(router: self) else { return }
+            navController.pushViewController(creatorVC, animated: true)
         }
+//        if let navController = navController {
+//            guard let mainVC = builder?.createMainModule(router: self) else { return }
+//            navController.viewControllers = [mainVC]
+//        }
     }
     
     func creatorModule() {
         if let navController = navController {
             guard let creatorVC = builder?.createCreatorModule(router: self) else { return }
-            creatorVC.modalPresentationStyle = .popover
-            let first = navController.viewControllers.first
-            first?.present(creatorVC, animated: true)
+            navController.pushViewController(creatorVC, animated: true)
         }
     }
     

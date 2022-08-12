@@ -39,8 +39,9 @@ extension TaskListView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TaskCell()
+        cell.contentView.isUserInteractionEnabled = true
         cell.configure()
+        
         return cell
     }
-    
 }

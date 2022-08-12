@@ -11,7 +11,6 @@ import RxSwift
 
 class BottomButtonView: UIView {
     var button = UIButton()
-    var height: Double = 36
     
     func configure() {
         setUpButton()
