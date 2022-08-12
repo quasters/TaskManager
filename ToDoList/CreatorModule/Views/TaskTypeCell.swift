@@ -11,13 +11,16 @@ class TaskTypeCell: UITableViewCell {
     private let tabs = ["Basic", "Urgent", "Important"]
     private let typeSegment = CustomSegmentControl() // MainModule/Views/
     
+    private let sideIndent: Double = 20
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        typeSegment.configurate(tabTitles: tabs, height: self.bounds.height, width: self.bounds.width)
+        typeSegment.configurate(tabTitles: tabs, height: self.bounds.height, width: self.bounds.width - (sideIndent * 2))
     }
     
     func configure() {
         self.selectionStyle = .none
+        self.contentView.isUserInteractionEnabled = true
 
         self.addSubview(typeSegment)
         setConstraints()
@@ -26,7 +29,8 @@ class TaskTypeCell: UITableViewCell {
     func setConstraints() {
         typeSegment.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            typeSegment.widthAnchor.constraint(equalTo: self.widthAnchor),
+            typeSegment.leftAnchor.constraint(equalTo: self.leftAnchor, constant: sideIndent),
+            typeSegment.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -sideIndent),
             typeSegment.heightAnchor.constraint(equalTo: self.heightAnchor)
         ])
     }

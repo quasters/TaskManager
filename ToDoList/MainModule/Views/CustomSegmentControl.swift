@@ -9,15 +9,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class CustomSegmentControl: UIView {
+final class CustomSegmentControl: UIView {
     private var tabTitles: [String]?
     private var height: Double = 0
     private var width: Double = 0
     
     private var buttons = [UIButton]()
-    private var selector = UIView()
+    private let selector = UIView()
     
-    var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     func configurate(tabTitles: [String], height: Double, width: Double) {
         self.tabTitles = tabTitles

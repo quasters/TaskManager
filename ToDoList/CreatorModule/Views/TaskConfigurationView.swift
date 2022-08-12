@@ -41,7 +41,7 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let heights: [CGFloat] = [44, 44, 44, 38]
+        let heights: [CGFloat] = [30, 44, 44, 38]
         return heights[indexPath.section]
     }
     
@@ -51,24 +51,21 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        switch indexPath.section {
-//        case 0:
-//            let cell = ColorPickerCell()
-//            cell.textLabel?.text = "\(indexPath.row)"
-////            cell.selectionStyle = .none
-//            return cell
-//        case 3:
-        let cell = TaskTypeCell()
-        
-        cell.contentView.isUserInteractionEnabled = true
-        cell.configure()
-        return cell
-//        default:
-//            let cell = UITableViewCell()
-//            cell.textLabel?.text = "\(indexPath.row)"
-//            cell.selectionStyle = .none
-//            return cell
-//        }
+        switch indexPath.section {
+        case 0:
+            let cell = ColorPickerCell()
+            cell.configure(radius: 15)
+            return cell
+        case 3:
+            let cell = TaskTypeCell()
+            cell.configure()
+            return cell
+        default:
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "Error: Invalid UITableView IndexPath"
+            cell.selectionStyle = .none
+            return cell
+        }
         
     }
 }

@@ -10,8 +10,6 @@ import UIKit
 class CreatorVC: UIViewController {
     var viewModel: CreatorVMProtocol?
     
-    private let sideIndent: Double = 10
-    
     private var saveButton: UIButton?
     private var taskConfigurationView: TaskConfigurationView?
     
@@ -58,7 +56,7 @@ class CreatorVC: UIViewController {
             saveButton.heightAnchor.constraint(equalToConstant: 42),
             saveButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20),
             saveButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
-            saveButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            saveButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5)
         ])
     }
     
@@ -68,9 +66,9 @@ class CreatorVC: UIViewController {
         taskConfigurationView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             taskConfigurationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            taskConfigurationView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: sideIndent),
-            taskConfigurationView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -sideIndent),
-            taskConfigurationView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -sideIndent)
+            taskConfigurationView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            taskConfigurationView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            taskConfigurationView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -20)
         ])
     }
 }

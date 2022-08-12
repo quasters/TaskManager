@@ -31,6 +31,7 @@
 		D1AC201428A5AA0B00AA6D17 /* TaskConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC201328A5AA0B00AA6D17 /* TaskConfigurationView.swift */; };
 		D1AC201828A5B7CF00AA6D17 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC201728A5B7CF00AA6D17 /* ColorPickerCell.swift */; };
 		D1AC201A28A5BD4300AA6D17 /* TaskTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC201928A5BD4300AA6D17 /* TaskTypeCell.swift */; };
+		D1AC201C28A5E3C800AA6D17 /* TaskColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC201B28A5E3C800AA6D17 /* TaskColor.swift */; };
 		D1E76BD828A11C46005CD21D /* CreatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E76BD728A11C46005CD21D /* CreatorVC.swift */; };
 		D1E76BDC28A11C72005CD21D /* CreatorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E76BDB28A11C72005CD21D /* CreatorVM.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		D1AC201328A5AA0B00AA6D17 /* TaskConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskConfigurationView.swift; sourceTree = "<group>"; };
 		D1AC201728A5B7CF00AA6D17 /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
 		D1AC201928A5BD4300AA6D17 /* TaskTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTypeCell.swift; sourceTree = "<group>"; };
+		D1AC201B28A5E3C800AA6D17 /* TaskColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskColor.swift; sourceTree = "<group>"; };
 		D1E76BD728A11C46005CD21D /* CreatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorVC.swift; sourceTree = "<group>"; };
 		D1E76BDB28A11C72005CD21D /* CreatorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +127,7 @@
 				D1A5D337289EAACF00FA9D25 /* ToDoList.xcdatamodeld */,
 				D1AC200C28A59AAB00AA6D17 /* Task+CoreDataClass.swift */,
 				D1AC200E28A59ACC00AA6D17 /* Task+CoreDataProperties.swift */,
+				D1AC201B28A5E3C800AA6D17 /* TaskColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				D1A5D36728A0825B00FA9D25 /* TaskCell.swift in Sources */,
 				D1AC201228A5A4AA00AA6D17 /* DataStoreManager.swift in Sources */,
 				D1A5D32F289EAACF00FA9D25 /* AppDelegate.swift in Sources */,
+				D1AC201C28A5E3C800AA6D17 /* TaskColor.swift in Sources */,
 				D1A5D331289EAACF00FA9D25 /* SceneDelegate.swift in Sources */,
 				D1AC200F28A59ACC00AA6D17 /* Task+CoreDataProperties.swift in Sources */,
 				D1A5D339289EAACF00FA9D25 /* ToDoList.xcdatamodeld in Sources */,
