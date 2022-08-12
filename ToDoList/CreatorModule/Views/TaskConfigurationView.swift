@@ -41,12 +41,12 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let heights: [CGFloat] = [30, 44, 44, 38]
+        let heights: [CGFloat] = [30, 44, 44, 58]
         return heights[indexPath.section]
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let title = ["Task Color", "Task Deadline", "Task Title", "Task Type"]
+        let title = ["Task Color", "Task Deadline", "Task Title", nil]
         return title[section]
     }
 
@@ -55,6 +55,10 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
         case 0:
             let cell = ColorPickerCell()
             cell.configure(radius: 15)
+            return cell
+        case 1:
+            let cell = TaskDeadlineCell()
+            cell.configure()
             return cell
         case 2:
             let cell = TaskTitleCell()

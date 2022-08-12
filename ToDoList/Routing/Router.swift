@@ -18,13 +18,9 @@ class Router: RouterProtocol {
     
     func initialViewConroller() {
         if let navController = navController {
-            guard let creatorVC = builder?.createCreatorModule(router: self) else { return }
-            navController.pushViewController(creatorVC, animated: true)
+            guard let mainVC = builder?.createMainModule(router: self) else { return }
+            navController.viewControllers = [mainVC]
         }
-//        if let navController = navController {
-//            guard let mainVC = builder?.createMainModule(router: self) else { return }
-//            navController.viewControllers = [mainVC]
-//        }
     }
     
     func creatorModule() {
