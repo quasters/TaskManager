@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeaderView: UIView {
+final class HeaderView: UIView {
     let greetingLabel = UILabel()
     let statusLabel = UILabel()
     
@@ -20,17 +20,18 @@ class HeaderView: UIView {
         setConstraints()
     }
     
+    // MARK: - Set UI Elements
     private func setText() {
         let hour = Calendar.current.component(.hour, from: Date())
         
         var text = "Welcome back!"
-        if hour >= 6 && hour < 11 {
+        if hour >= 6 && hour < 12 {
             text = "Good morning!"
         } else if hour >= 12 && hour < 17 {
             text = "Good afternoon!"
-        } else if hour >= 17 && hour < 23 {
+        } else if hour >= 17 && hour < 24 {
             text = "Good evening!"
-        } else if hour >= 23 || hour < 6 {
+        } else if hour >= 0 && hour < 6 {
             text = "Good night!"
         }
         
@@ -42,6 +43,7 @@ class HeaderView: UIView {
         greetingLabel.text = text
     }
     
+    // MARK: - Constraints
     private func setConstraints() {
         greetingLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

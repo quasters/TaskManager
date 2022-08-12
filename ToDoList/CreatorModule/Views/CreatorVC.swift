@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreatorVC: UIViewController {
+final class CreatorVC: UIViewController {
     var viewModel: CreatorVMProtocol?
     
     private var saveButton: UIButton?
@@ -25,7 +25,8 @@ class CreatorVC: UIViewController {
         setTaskConfigurationView()
     }
     
-    func setTaskConfigurationView() {
+    // MARK: - Set UI Elements
+    private func setTaskConfigurationView() {
         taskConfigurationView = TaskConfigurationView()
         taskConfigurationView?.configure()
         
@@ -33,7 +34,7 @@ class CreatorVC: UIViewController {
         setTaskConfigurationViewConstraints()
     }
     
-    func setSaveButton() {
+    private func setSaveButton() {
         saveButton = UIButton()
         guard let saveButton = saveButton else { return }
         
@@ -48,7 +49,7 @@ class CreatorVC: UIViewController {
         setSaveButtonConstraints()
     }
     
-// MARK: - Constraints
+    // MARK: - Constraints
     private func setSaveButtonConstraints() {
         guard let saveButton = saveButton else { return }
         saveButton.translatesAutoresizingMaskIntoConstraints = false

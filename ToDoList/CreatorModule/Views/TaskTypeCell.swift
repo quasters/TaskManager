@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TaskTypeCell: UITableViewCell {
+final class TaskTypeCell: UITableViewCell {
     private let tabs = ["Basic", "Urgent", "Important"]
     private let typeSegment = CustomSegmentControl() // MainModule/Views/
     
@@ -26,7 +26,7 @@ class TaskTypeCell: UITableViewCell {
         setConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         typeSegment.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             typeSegment.topAnchor.constraint(equalTo: self.topAnchor, constant: sideIndent),

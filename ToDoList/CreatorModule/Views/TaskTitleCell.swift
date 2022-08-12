@@ -22,7 +22,7 @@ class TaskTitleCell: UITableViewCell {
         setConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         textField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             textField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),

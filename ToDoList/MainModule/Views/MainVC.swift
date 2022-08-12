@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class MainVC: UIViewController {
+final class MainVC: UIViewController {
     var viewModel: MainVMProtocol?
     
     private var headerView: HeaderView?
@@ -27,10 +27,8 @@ class MainVC: UIViewController {
         setList()
         setAddButton()
     }
-       
     
-    
-// MARK: Set up views
+    // MARK: Set up UI Elements
     private func setHeader() {
         headerView = HeaderView()
         guard let headerView = headerView else { return }
@@ -82,9 +80,7 @@ class MainVC: UIViewController {
         }.disposed(by: disposeBag)
     }
     
-    
-    
-// MARK: - Constraints
+    // MARK: - Constraints
     private func setHeaderConstraints() {
         guard let headerView = headerView else { return }
         
@@ -131,7 +127,7 @@ class MainVC: UIViewController {
             bottomButtonView.heightAnchor.constraint(equalToConstant: 36),
             bottomButtonView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/3),
             bottomButtonView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            bottomButtonView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            bottomButtonView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5)
         ])
     }
 }

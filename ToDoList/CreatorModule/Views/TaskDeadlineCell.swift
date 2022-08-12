@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TaskDeadlineCell: UITableViewCell {
+final class TaskDeadlineCell: UITableViewCell {
     let picker = UIDatePicker()
     
     func configure() {
@@ -21,7 +21,7 @@ class TaskDeadlineCell: UITableViewCell {
         setConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         picker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             picker.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),

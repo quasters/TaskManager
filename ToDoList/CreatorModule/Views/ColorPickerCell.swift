@@ -7,9 +7,12 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
-class ColorPickerCell: UITableViewCell {
-    var colorButtons = [UIButton]()
+final class ColorPickerCell: UITableViewCell {
+    private var values: Observable<Int>?
+    
+    private var colorButtons = [UIButton]()
     private var stack = UIStackView()
     
     private var radius: Double = 15
@@ -24,10 +27,9 @@ class ColorPickerCell: UITableViewCell {
         
         setUpStack()
         setUpButtons()
-        
-        binding()
     }
-    
+        
+    // MARK: - Setups
     private func setUpStack() {
         stack.axis = .horizontal
         stack.alignment = .center
@@ -55,19 +57,26 @@ class ColorPickerCell: UITableViewCell {
             colorButtons.append(button)
             stack.addArrangedSubview(button)
         }
+        binding()
     }
     
+    // MARK: - RX binding
     private func binding() {
-        for colorButton in colorButtons {
-            colorButton.rx.tap.subscribe { [weak self] event in
-                guard let self = self else { return }
-                self.colorButtons.map { $0.layer.borderWidth = 0 }
-                colorButton.layer.borderWidth = 1
-            }.disposed(by: disposeBag)
-        }
+        let tags = colorButtons
+            .map { ($0.rx.tap, $0.tag) }
+            .map { obs, tag in obs.map { tag } }
+        values = Observable.merge(tags)
+        
+        values?.bind(onNext: { [weak self] tag in
+            guard let self = self else { return }
+            for button in self.colorButtons {
+                button.layer.borderWidth = 0
+            }
+            self.colorButtons[tag].layer.borderWidth = 1
+        }).disposed(by: disposeBag)
     }
     
-    
+    // MARK: - Constraints
     private func setStackConstraints() {
         stack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

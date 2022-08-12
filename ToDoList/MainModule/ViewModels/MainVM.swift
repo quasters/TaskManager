@@ -11,7 +11,7 @@ protocol MainVMProtocol {
     func swiftchToCreatorModule()
 }
 
-class MainVM: MainVMProtocol {
+final class MainVM: MainVMProtocol {
     private var router: RouterProtocol?
     
     init(router: RouterProtocol) {

@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TaskCell: UITableViewCell {
+final class TaskCell: UITableViewCell {
     let editButton = UIButton()
     let doneButton = UIButton()
     private let backView = UIView()
@@ -30,9 +30,7 @@ class TaskCell: UITableViewCell {
         setTaskLabel()
     }
     
-    
-    
-// MARK: - Set up views
+    // MARK: - Set up views
     private func setBackView() {
         backView.backgroundColor = .systemYellow
         backView.layer.cornerRadius = 12
@@ -81,9 +79,7 @@ class TaskCell: UITableViewCell {
         setTaskLabelConstraints()
     }
     
-
-    
-// MARK: - Constraints
+    // MARK: - Constraints
     private func setBackViewConstraints() {
         backView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -133,7 +129,6 @@ class TaskCell: UITableViewCell {
             taskLabel.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: sideIndent),
             taskLabel.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -sideIndent),
             taskLabel.topAnchor.constraint(equalTo: categoryBackView.bottomAnchor, constant: 10),
-            //titleLablel.bottomAnchor.constraint(equalTo: )
         ])
     }
 }

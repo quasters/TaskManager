@@ -9,7 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class BottomButtonView: UIView {
+final class BottomButtonView: UIView {
     var button = UIButton()
     
     func configure() {

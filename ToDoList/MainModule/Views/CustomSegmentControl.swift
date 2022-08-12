@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class CustomSegmentControl: UIView {
+    var values: Observable<Int>?
     private var tabTitles: [String]?
     private var height: Double = 0
     private var width: Double = 0
@@ -26,11 +27,11 @@ final class CustomSegmentControl: UIView {
         setUpSegmentControl()
     }
     
+    // MARK: Set UI Elements
     private func setUpSegmentControl() {
         setUpButtons()
         setUpSelector()
         setUpStack()
-        binding()
     }
 
     private func setUpStack() {
@@ -65,19 +66,26 @@ final class CustomSegmentControl: UIView {
             button.setTitle(title, for: .normal)
             buttons.append(button)
         }
+        binding()
     }
     
+    // MARK: - Bindings
     private func binding() {
-        for button in buttons {
-            button.rx.tap.subscribe { [weak self] event in
-                guard let self = self else { return }
-                self.buttons.map { $0.setTitleColor(UIColor(named: "blackAdaptive"), for: .normal) }
-                button.setTitleColor(.systemBackground, for: .normal)
-                let selectorPosition = self.width / Double(self.buttons.count) * Double(button.tag)
-                UIView.animate(withDuration: 0.3) {
-                    self.selector.frame.origin.x = selectorPosition
-                }
-            }.disposed(by: disposeBag)
-        }
+        let tags = buttons
+            .map { ($0.rx.tap, $0.tag) }
+            .map { obs, tag in obs.map { tag } }
+        values = Observable.merge(tags)
+        
+        values?.bind(onNext: { [weak self] tag in
+            guard let self = self else { return }
+            for button in self.buttons {
+                button.setTitleColor(UIColor(named: "blackAdaptive"), for: .normal)
+            }
+            self.buttons[tag].setTitleColor(.systemBackground, for: .normal)
+            let selectorPosition = self.width / Double(self.buttons.count) * Double(tag)
+            UIView.animate(withDuration: 0.3) {
+                self.selector.frame.origin.x = selectorPosition
+            }
+        }).disposed(by: disposeBag)
     }
 }

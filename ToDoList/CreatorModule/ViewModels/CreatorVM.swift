@@ -5,12 +5,20 @@
 //  Created by Наиль Буркеев on 08.08.2022.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
 
 protocol CreatorVMProtocol {
-    
+    var editedTaskObserver: PublishSubject<Task> { get }
 }
 
-class CreatorVM: CreatorVMProtocol {
+final class CreatorVM: CreatorVMProtocol {
+    var editedTaskObserver = PublishSubject<Task>()
+    
+    private func saveAndGo() {
+        editedTaskObserver.bind { [weak self] task in
+            return
+        }
+    }
     
 }

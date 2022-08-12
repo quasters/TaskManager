@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  
 //
-//  Created by Наиль Буркеев on 12.08.2022.
+//  Created by Наиль Буркеев on 13.08.2022.
 //
 //
 

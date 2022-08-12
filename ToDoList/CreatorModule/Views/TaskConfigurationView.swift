@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TaskConfigurationView: UIView {
+    private var task = Taskk()
     private let tableView = UITableView()
+    private let disposeBag = DisposeBag()
     
     func configure()  {
         tableView.delegate = self
