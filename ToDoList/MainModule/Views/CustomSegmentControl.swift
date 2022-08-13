@@ -59,6 +59,7 @@ final class CustomSegmentControl: UIView {
             let button = UIButton(type: .system)
             if index == 0 {
                 button.setTitleColor(.systemBackground, for: .normal)
+                button.isEnabled = false
             } else {
                 button.setTitleColor(UIColor(named: "blackAdaptive"), for: .normal)
             }
@@ -69,23 +70,29 @@ final class CustomSegmentControl: UIView {
         binding()
     }
     
-    // MARK: - Bindings
+    // MARK: - Rx Bindings
     private func binding() {
         let tags = buttons
             .map { ($0.rx.tap, $0.tag) }
             .map { obs, tag in obs.map { tag } }
-        values = Observable.merge(tags)
         
-        values?.bind(onNext: { [weak self] tag in
-            guard let self = self else { return }
-            for button in self.buttons {
-                button.setTitleColor(UIColor(named: "blackAdaptive"), for: .normal)
-            }
-            self.buttons[tag].setTitleColor(.systemBackground, for: .normal)
-            let selectorPosition = self.width / Double(self.buttons.count) * Double(tag)
-            UIView.animate(withDuration: 0.3) {
-                self.selector.frame.origin.x = selectorPosition
-            }
-        }).disposed(by: disposeBag)
+        values = Observable.merge(tags).startWith(0)
+        
+        values?
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] tag in
+                guard let self = self else { return }
+                for button in self.buttons {
+                    button.setTitleColor(UIColor(named: "blackAdaptive"), for: .normal)
+                    button.isEnabled = true
+                }
+                self.buttons[tag].setTitleColor(.systemBackground, for: .normal)
+                self.buttons[tag].isEnabled = false
+                let selectorPosition = self.width / Double(self.buttons.count) * Double(tag)
+                UIView.animate(withDuration: 0.3) {
+                    self.selector.frame.origin.x = selectorPosition
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }

@@ -10,7 +10,15 @@ import UIKit
 class TaskListView: UIView {
     let tableView = UITableView()
     
+    var tasks: [Task]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     func configure() {
+        //tasks = DataStoreManager.shared.getTasks(currentTab: .done)
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -34,13 +42,14 @@ extension TaskListView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return tasks?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TaskCell()
+        let task = tasks![indexPath.row]
         cell.contentView.isUserInteractionEnabled = true
-        cell.configure()
+        cell.configure(title: task.title, category: task.type, isCompleted: task.isCompleted)
         
         return cell
     }

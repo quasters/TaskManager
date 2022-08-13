@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class ColorPickerCell: UITableViewCell {
-    private var values: Observable<Int>?
+    var values: Observable<Int>?
     
     private var colorButtons = [UIButton]()
     private var stack = UIStackView()
@@ -52,6 +52,7 @@ final class ColorPickerCell: UITableViewCell {
             button.layer.borderColor = UIColor(named: "blackAdaptive")?.cgColor
             if index == 0 {
                 button.layer.borderWidth = 1
+                button.isEnabled = false
             }
             button.tag = index
             colorButtons.append(button)
@@ -60,20 +61,25 @@ final class ColorPickerCell: UITableViewCell {
         binding()
     }
     
-    // MARK: - RX binding
+    // MARK: - Rx Bindings
     private func binding() {
         let tags = colorButtons
             .map { ($0.rx.tap, $0.tag) }
             .map { obs, tag in obs.map { tag } }
-        values = Observable.merge(tags)
+        values = Observable.merge(tags).startWith(0)
         
-        values?.bind(onNext: { [weak self] tag in
-            guard let self = self else { return }
-            for button in self.colorButtons {
-                button.layer.borderWidth = 0
-            }
-            self.colorButtons[tag].layer.borderWidth = 1
-        }).disposed(by: disposeBag)
+        values?
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] tag in
+                guard let self = self else { return }
+                for button in self.colorButtons {
+                    button.layer.borderWidth = 0
+                    button.isEnabled = true
+                }
+                self.colorButtons[tag].layer.borderWidth = 1
+                self.colorButtons[tag].isEnabled = false
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Constraints

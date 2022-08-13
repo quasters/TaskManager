@@ -10,9 +10,15 @@ import RxSwift
 import RxCocoa
 
 class TaskConfigurationView: UIView {
-    private var task = Taskk()
+    let title = PublishSubject<String?>()
+    let color = PublishSubject<String>()
+    let deadline = PublishSubject<Date>()
+    let type = PublishSubject<TypeTab>()
+    
     private let tableView = UITableView()
     private let disposeBag = DisposeBag()
+    
+    private let task = Task()
     
     func configure()  {
         tableView.delegate = self
@@ -20,7 +26,6 @@ class TaskConfigurationView: UIView {
         tableView.isScrollEnabled = false
         
         tableView.separatorStyle = .none
-  
         
         self.addSubview(tableView)
         setConstraints()
@@ -59,19 +64,48 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
         case 0:
             let cell = ColorPickerCell()
             cell.configure(radius: 15)
+            
+            cell.values?
+                .bind(onNext: { [weak self] colorId in
+                    self?.color.onNext(TaskColor(colorId: colorId).rawValue)
+                })
+                .disposed(by: disposeBag)
             return cell
+            
         case 1:
             let cell = TaskDeadlineCell()
             cell.configure()
+            
+            cell.picker.rx.date
+                .bind { date in
+                    self.deadline.onNext(date)
+                }
+                .disposed(by: disposeBag)
             return cell
+            
         case 2:
             let cell = TaskTitleCell()
             cell.configure()
+            
+            cell.textField.rx.text
+                .bind { [weak self] value in
+                    self?.title.onNext(value)
+                }
+                .disposed(by: disposeBag)
             return cell
+            
         case 3:
             let cell = TaskTypeCell()
-            cell.configure()
+            let width = self.bounds.width - 40
+            cell.configure(height: 38, width: width)
+            
+            cell.typeSegment.values?
+                .bind(onNext: { [weak self] id in
+                    self?.type.onNext(TypeTab(typeId: id))
+                })
+                .disposed(by: disposeBag)
             return cell
+            
         default:
             let cell = UITableViewCell()
             cell.textLabel?.text = "Error: Invalid UITableView IndexPath"

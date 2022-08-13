@@ -10,6 +10,9 @@
 		8F0AA2DC03C862AD39EA77B9 /* Pods_ToDoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 590AFF0ACD1C2299A43C6D57 /* Pods_ToDoList.framework */; };
 		D17D292828A6EC5E00D7CB0C /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D292728A6EC5E00D7CB0C /* Task+CoreDataProperties.swift */; };
 		D17D292928A6EC5E00D7CB0C /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D292628A6EC5E00D7CB0C /* Task+CoreDataClass.swift */; };
+		D17D292B28A7245500D7CB0C /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D292A28A7245500D7CB0C /* MainTab.swift */; };
+		D17D292D28A747C700D7CB0C /* TypeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D292C28A747C700D7CB0C /* TypeTab.swift */; };
+		D17D292F28A85F1C00D7CB0C /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D292E28A85F1C00D7CB0C /* DataProvider.swift */; };
 		D1A5D32F289EAACF00FA9D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D32E289EAACF00FA9D25 /* AppDelegate.swift */; };
 		D1A5D331289EAACF00FA9D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D330289EAACF00FA9D25 /* SceneDelegate.swift */; };
 		D1A5D333289EAACF00FA9D25 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D332289EAACF00FA9D25 /* MainVC.swift */; };
@@ -17,7 +20,6 @@
 		D1A5D33B289EAAD100FA9D25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1A5D33A289EAAD100FA9D25 /* Assets.xcassets */; };
 		D1A5D33E289EAAD100FA9D25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A5D33C289EAAD100FA9D25 /* LaunchScreen.storyboard */; };
 		D1A5D34D289EB1AE00FA9D25 /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D34C289EB1AE00FA9D25 /* MainVM.swift */; };
-		D1A5D350289EB1E100FA9D25 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D34F289EB1E100FA9D25 /* Dynamic.swift */; };
 		D1A5D352289FECA700FA9D25 /* AsselderBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D351289FECA700FA9D25 /* AsselderBuilderProtocol.swift */; };
 		D1A5D354289FF60000FA9D25 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D353289FF60000FA9D25 /* RouterProtocol.swift */; };
 		D1A5D356289FF69700FA9D25 /* AsselderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D355289FF69700FA9D25 /* AsselderBuilder.swift */; };
@@ -44,6 +46,9 @@
 		B9F0233E9276793BDB2A5E0A /* Pods-ToDoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList.release.xcconfig"; path = "Target Support Files/Pods-ToDoList/Pods-ToDoList.release.xcconfig"; sourceTree = "<group>"; };
 		D17D292628A6EC5E00D7CB0C /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataClass.swift"; path = "/Users/n.burkeev/Documents/GitHub/ToDoList/ToDoList/Models/Task+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		D17D292728A6EC5E00D7CB0C /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataProperties.swift"; path = "/Users/n.burkeev/Documents/GitHub/ToDoList/ToDoList/Models/Task+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		D17D292A28A7245500D7CB0C /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
+		D17D292C28A747C700D7CB0C /* TypeTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeTab.swift; sourceTree = "<group>"; };
+		D17D292E28A85F1C00D7CB0C /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		D1A5D32B289EAACF00FA9D25 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A5D32E289EAACF00FA9D25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1A5D330289EAACF00FA9D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +57,6 @@
 		D1A5D33A289EAAD100FA9D25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1A5D33D289EAAD100FA9D25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1A5D34C289EB1AE00FA9D25 /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
-		D1A5D34F289EB1E100FA9D25 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		D1A5D351289FECA700FA9D25 /* AsselderBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsselderBuilderProtocol.swift; sourceTree = "<group>"; };
 		D1A5D353289FF60000FA9D25 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		D1A5D355289FF69700FA9D25 /* AsselderBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsselderBuilder.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				D17D292628A6EC5E00D7CB0C /* Task+CoreDataClass.swift */,
 				D17D292728A6EC5E00D7CB0C /* Task+CoreDataProperties.swift */,
 				D1AC201B28A5E3C800AA6D17 /* TaskColor.swift */,
+				D17D292A28A7245500D7CB0C /* MainTab.swift */,
+				D17D292C28A747C700D7CB0C /* TypeTab.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -139,7 +145,6 @@
 		D1A5D348289EAE2B00FA9D25 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				D1A5D34E289EB1C200FA9D25 /* Bindings */,
 				D1A5D34C289EB1AE00FA9D25 /* MainVM.swift */,
 			);
 			path = ViewModels;
@@ -156,14 +161,6 @@
 				D1A5D36628A0825B00FA9D25 /* TaskCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D1A5D34E289EB1C200FA9D25 /* Bindings */ = {
-			isa = PBXGroup;
-			children = (
-				D1A5D34F289EB1E100FA9D25 /* Dynamic.swift */,
-			);
-			path = Bindings;
 			sourceTree = "<group>";
 		};
 		D1A5D35928A003EC00FA9D25 /* App */ = {
@@ -200,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				D1AC201128A5A4AA00AA6D17 /* DataStoreManager.swift */,
+				D17D292E28A85F1C00D7CB0C /* DataProvider.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -370,6 +368,7 @@
 				D17D292928A6EC5E00D7CB0C /* Task+CoreDataClass.swift in Sources */,
 				D1A5D36528A07B8C00FA9D25 /* TaskListView.swift in Sources */,
 				D1AC201828A5B7CF00AA6D17 /* ColorPickerCell.swift in Sources */,
+				D17D292D28A747C700D7CB0C /* TypeTab.swift in Sources */,
 				D1A5D358289FF74700FA9D25 /* Router.swift in Sources */,
 				D1A5D356289FF69700FA9D25 /* AsselderBuilder.swift in Sources */,
 				D1A5D354289FF60000FA9D25 /* RouterProtocol.swift in Sources */,
@@ -378,13 +377,14 @@
 				D1E76BDC28A11C72005CD21D /* CreatorVM.swift in Sources */,
 				D1A5D34D289EB1AE00FA9D25 /* MainVM.swift in Sources */,
 				D1AC201428A5AA0B00AA6D17 /* TaskConfigurationView.swift in Sources */,
+				D17D292B28A7245500D7CB0C /* MainTab.swift in Sources */,
+				D17D292F28A85F1C00D7CB0C /* DataProvider.swift in Sources */,
 				D1A5D333289EAACF00FA9D25 /* MainVC.swift in Sources */,
 				D17D292828A6EC5E00D7CB0C /* Task+CoreDataProperties.swift in Sources */,
 				D1AC202028A6295D00AA6D17 /* TaskDeadlineCell.swift in Sources */,
 				D1AC201A28A5BD4300AA6D17 /* TaskTypeCell.swift in Sources */,
 				D1E76BD828A11C46005CD21D /* CreatorVC.swift in Sources */,
 				D1A5D35D28A009D300FA9D25 /* HeaderView.swift in Sources */,
-				D1A5D350289EB1E100FA9D25 /* Dynamic.swift in Sources */,
 				D1A5D36728A0825B00FA9D25 /* TaskCell.swift in Sources */,
 				D1AC201228A5A4AA00AA6D17 /* DataStoreManager.swift in Sources */,
 				D1A5D32F289EAACF00FA9D25 /* AppDelegate.swift in Sources */,

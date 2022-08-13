@@ -15,17 +15,29 @@ enum TaskColor: String, CaseIterable {
     case orange = "Orange"
     case red = "Red"
     
-    static func getName(by colorId: Int) -> String {
+    init(colorId: Int) {
         switch colorId {
-        case 0: return "Yellow"
-        case 1: return "Green"
-        case 2: return "Blue"
-        case 3: return "Purple"
-        case 4: return "Orange"
-        case 5: return "Red"
-        default: return "Yellow"
+        case 0: self = .yellow
+        case 1: self = .green
+        case 2: self = .blue
+        case 3: self = .purple
+        case 4: self = .orange
+        case 5: self = .red
+        default: self = .yellow
         }
     }
+    
+//    static func getName(by colorId: Int) -> String {
+//        switch colorId {
+//        case 0: return "Yellow"
+//        case 1: return "Green"
+//        case 2: return "Blue"
+//        case 3: return "Purple"
+//        case 4: return "Orange"
+//        case 5: return "Red"
+//        default: return "Yellow"
+//        }
+//    }
     
     func getColor() -> UIColor {
         switch self {

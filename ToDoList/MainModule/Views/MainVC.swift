@@ -26,6 +26,8 @@ final class MainVC: UIViewController {
         setTabs()
         setList()
         setAddButton()
+        
+        binding()
     }
     
     // MARK: Set up UI Elements
@@ -51,7 +53,10 @@ final class MainVC: UIViewController {
         self.view.addSubview(daySegment)
         setTabsConstraints(height: segmentHeight)
         
-        let tabs = ["Today", "Upcoming", "Task Done", "Failed"]
+        let tabs = [ MainTab.today.rawValue,
+                     MainTab.upcoming.rawValue,
+                     MainTab.done.rawValue,
+                     MainTab.fail.rawValue ]
         let width = self.view.frame.width - (sideIndent * 2)
         daySegment.configurate(tabTitles: tabs, height: segmentHeight, width: width)
     }
@@ -78,6 +83,22 @@ final class MainVC: UIViewController {
         bottomButtonView.button.rx.tap.bind { [weak self] in
             self?.viewModel?.swiftchToCreatorModule()
         }.disposed(by: disposeBag)
+    }
+    
+    func binding() {
+        self.viewModel?.tasks
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] tasks in
+                self?.listView?.tasks = tasks
+            })
+            .disposed(by: disposeBag)
+        
+        daySegment?.values?
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] tabId in
+                self?.viewModel?.updateTasks(currentTab: MainTab(id: tabId))
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Constraints

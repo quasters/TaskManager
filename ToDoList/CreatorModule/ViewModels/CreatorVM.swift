@@ -9,16 +9,17 @@ import RxSwift
 import RxCocoa
 
 protocol CreatorVMProtocol {
-    var editedTaskObserver: PublishSubject<Task> { get }
+    func savePopToRoot(title: String, type: TypeTab, date: Date, color: TaskColor)
 }
 
 final class CreatorVM: CreatorVMProtocol {
-    var editedTaskObserver = PublishSubject<Task>()
+    private var router: RouterProtocol?
     
-    private func saveAndGo() {
-        editedTaskObserver.bind { [weak self] task in
-            return
-        }
+    init(router: RouterProtocol) {
+        
     }
     
+    func savePopToRoot(title: String, type: TypeTab, date: Date, color: TaskColor) {
+        
+    }
 }

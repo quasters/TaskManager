@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CreatorVC: UIViewController {
     var viewModel: CreatorVMProtocol?
@@ -13,6 +14,7 @@ final class CreatorVC: UIViewController {
     private var saveButton: UIButton?
     private var taskConfigurationView: TaskConfigurationView?
     
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,7 @@ final class CreatorVC: UIViewController {
         
         setSaveButton()
         setTaskConfigurationView()
+        bind()
     }
     
     // MARK: - Set UI Elements
@@ -44,9 +47,25 @@ final class CreatorVC: UIViewController {
         configuration.cornerStyle = .capsule
         configuration.title = "Save Task"
         saveButton.configuration = configuration
+        saveButton.isEnabled = false
         
         self.view.addSubview(saveButton)
         setSaveButtonConstraints()
+    }
+    
+    // MARK: - Rx Bindings
+    private func bind() {
+        taskConfigurationView?.title
+            .bind(onNext: { [weak self] title in
+                guard let title = title else { return }
+                self?.saveButton?.isEnabled = title.count > 0
+            })
+            .disposed(by: disposeBag)
+        
+//        saveButton?.rx.tap.bind(onNext: { [weak self] in
+//            self?.viewModel.
+//        })
+//        .disposed(by: disposeBag)
     }
     
     // MARK: - Constraints

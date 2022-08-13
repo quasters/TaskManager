@@ -6,22 +6,23 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class TaskTypeCell: UITableViewCell {
-    private let tabs = ["Basic", "Urgent", "Important"]
-    private let typeSegment = CustomSegmentControl() // MainModule/Views/
+    let typeSegment = CustomSegmentControl() // MainModule/Views/
+    private let tabs = [ TypeTab.basic.rawValue,
+                         TypeTab.urgent.rawValue,
+                         TypeTab.important.rawValue ]
     
     private let sideIndent: Double = 20
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        typeSegment.configurate(tabTitles: tabs, height: self.bounds.height - sideIndent, width: self.bounds.width - (sideIndent * 2))
-    }
-    
-    func configure() {
+    func configure(height: Double, width: Double) {
         self.selectionStyle = .none
         self.contentView.isUserInteractionEnabled = true
-
+        
+        typeSegment.configurate(tabTitles: tabs, height: height, width: width)
+        
         self.addSubview(typeSegment)
         setConstraints()
     }

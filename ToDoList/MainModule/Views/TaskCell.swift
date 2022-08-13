@@ -21,8 +21,12 @@ final class TaskCell: UITableViewCell {
     
     private let sideIndent: Double = 20
     
-    func configure() {
+    func configure(title: String?, category: String?, isCompleted: Bool) {
         self.selectionStyle = .none
+        
+        doneButton.backgroundColor = isCompleted ? .black : .clear
+        taskLabel.text = title
+        categoryLabel.text = category
         
         setBackView()
         setCategoryView()
@@ -45,7 +49,6 @@ final class TaskCell: UITableViewCell {
         categoryBackView.layer.cornerRadius = 12
         categoryBackView.layer.masksToBounds = false
         
-        categoryLabel.text = "Important"
         categoryLabel.font = .systemFont(ofSize: 14)
         categoryLabel.textColor = .black
         
@@ -59,7 +62,7 @@ final class TaskCell: UITableViewCell {
         editButton.imageView?.layer.transform = CATransform3DMakeScale(1.25, 1.25, 1.25)
         editButton.tintColor = .black
         
-        doneButton.layer.cornerRadius = 12
+        doneButton.layer.cornerRadius = 11
         doneButton.layer.borderWidth = 2.0
         doneButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
         doneButton.layer.masksToBounds = false
@@ -70,7 +73,6 @@ final class TaskCell: UITableViewCell {
     }
     
     private func setTaskLabel() {
-        taskLabel.text = "Hello everyone"
         taskLabel.numberOfLines = 2
         taskLabel.font = .boldSystemFont(ofSize: 24)
         taskLabel.textColor = .black
@@ -108,8 +110,8 @@ final class TaskCell: UITableViewCell {
     private func setButtonsConstraints() {
         editButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            editButton.widthAnchor.constraint(equalToConstant: 25),
-            editButton.heightAnchor.constraint(equalToConstant: 25),
+            editButton.widthAnchor.constraint(equalToConstant: 24),
+            editButton.heightAnchor.constraint(equalToConstant: 24),
             editButton.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -sideIndent),
             editButton.topAnchor.constraint(equalTo: backView.topAnchor, constant: sideIndent)
         ])
