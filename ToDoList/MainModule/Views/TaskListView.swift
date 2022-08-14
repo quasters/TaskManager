@@ -18,7 +18,9 @@ class TaskListView: UIView {
     var isFailed = false
     var tasks: [Task]? {
         didSet {
-            tableView.reloadData()
+            UIView.transition(with: tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {
+                self.tableView.reloadData()
+            })
         }
     }
     
@@ -68,7 +70,7 @@ extension TaskListView: UITableViewDataSource, UITableViewDelegate {
             }
             .disposed(by: disposeBag)
         
-        cell.complitionButton
+        cell.completionButton
             .rx.tap
             .bind { [weak self] in
                 self?.complitiotnTask.onNext(task)

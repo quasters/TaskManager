@@ -12,6 +12,7 @@ protocol CreatorVMProtocol {
     var editTask: Task? { get }
     func save(title: String, type: TypeTab, deadline: Date, color: TaskColor)
     func update(task: Task, title: String, type: TypeTab, deadline: Date, color: TaskColor)
+    func delete(task: Task)
     func popToRoot()
 }
 
@@ -32,6 +33,10 @@ final class CreatorVM: CreatorVMProtocol {
     
     func update(task: Task, title: String, type: TypeTab, deadline: Date, color: TaskColor) {
         dataProvider.updateTask(task: task, title: title, type: type, deadline: deadline, color: color, isCompleted: nil)
+    }
+    
+    func delete(task: Task) {
+        dataProvider.deleteTask(task: task)
     }
     
     func popToRoot() {

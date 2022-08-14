@@ -11,15 +11,13 @@ import RxCocoa
 
 final class TaskCell: UITableViewCell {
     let editButton = UIButton()
-    let complitionButton = UIButton()
+    let completionButton = UIButton()
     private let backView = UIView()
     private let categoryBackView = UIView()
     private let categoryLabel = UILabel()
     private let taskLabel = UILabel()
     private let dateLabel = UILabel()
     private let timeLabel = UILabel()
-    
-    private let disposeBag = DisposeBag()
     
     private var deadline: Date?
     
@@ -28,7 +26,7 @@ final class TaskCell: UITableViewCell {
     func configure(title: String?, category: String?, date: Date?, color: TaskColor?, isCompleted: Bool, isFailed: Bool) {
         self.selectionStyle = .none
         
-        complitionButton.backgroundColor = isCompleted ? .black : .clear
+        completionButton.backgroundColor = isCompleted ? .black : .clear
         taskLabel.text = title
         categoryLabel.text = category
         deadline = date
@@ -70,13 +68,13 @@ final class TaskCell: UITableViewCell {
         editButton.imageView?.layer.transform = CATransform3DMakeScale(1.25, 1.25, 1.25)
         editButton.tintColor = .black
         
-        complitionButton.layer.cornerRadius = 11
-        complitionButton.layer.borderWidth = 2.0
-        complitionButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
-        complitionButton.layer.masksToBounds = false
+        completionButton.layer.cornerRadius = 11
+        completionButton.layer.borderWidth = 2.0
+        completionButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        completionButton.layer.masksToBounds = false
         
         self.addSubview(editButton)
-        self.addSubview(complitionButton)
+        self.addSubview(completionButton)
         setButtonsConstraints()
     }
     
@@ -143,12 +141,12 @@ final class TaskCell: UITableViewCell {
             editButton.topAnchor.constraint(equalTo: backView.topAnchor, constant: sideIndent)
         ])
         
-        complitionButton.translatesAutoresizingMaskIntoConstraints = false
+        completionButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            complitionButton.widthAnchor.constraint(equalToConstant: 22),
-            complitionButton.heightAnchor.constraint(equalToConstant: 22),
-            complitionButton.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -sideIndent),
-            complitionButton.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -sideIndent)
+            completionButton.widthAnchor.constraint(equalToConstant: 22),
+            completionButton.heightAnchor.constraint(equalToConstant: 22),
+            completionButton.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -sideIndent),
+            completionButton.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -sideIndent)
         ])
     }
     

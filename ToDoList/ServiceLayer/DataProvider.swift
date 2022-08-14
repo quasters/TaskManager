@@ -11,5 +11,6 @@ protocol DataProvider {
     func getTasks(currentTab: MainTab) -> [Task]?
     func saveNewTask(title: String, type: TypeTab, deadline: Date, color: TaskColor)
     func updateTask(task: Task, title: String?, type: TypeTab?, deadline: Date?, color: TaskColor?, isCompleted: Bool?)
+    func deleteTask(task: Task)
 }
 

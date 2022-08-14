@@ -43,10 +43,12 @@ final class CreatorVC: UIViewController {
             deleteButton.tintColor = .red
             self.navigationItem.rightBarButtonItem = deleteButton
             
-            deleteButton.rx.tap.bind(onNext: { [weak self] in
-                // FIXME: - add saving updates
-                self?.viewModel?.popToRoot()
-            }).disposed(by: disposeBag)
+//            deleteButton.rx.tap.bind(onNext: { [weak self] in
+//                guard let VM = self?.viewModel else { return }
+//                guard let task = VM.editTask else { return }
+//                VM.delete(task: task)
+//                VM.popToRoot()
+//            }).disposed(by: disposeBag)
         }
     }
     
@@ -76,6 +78,17 @@ final class CreatorVC: UIViewController {
     
     // MARK: - Rx Bindings
     private func bind() {
+        if let rightBarButton = self.navigationItem.rightBarButtonItem {
+            rightBarButton.rx.tap
+                .bind(onNext: { [weak self] in
+                    guard let VM = self?.viewModel else { return }
+                    guard let task = VM.editTask else { return }
+                    VM.delete(task: task)
+                    VM.popToRoot()
+                })
+                .disposed(by: disposeBag)
+        }
+        
         taskConfigurationView?.title
             .observe(on: MainScheduler.instance)
             .bind(onNext: { [weak self] title in

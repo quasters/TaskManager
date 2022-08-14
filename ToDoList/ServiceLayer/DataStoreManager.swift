@@ -97,6 +97,7 @@ extension DataStoreManager: DataProvider {
     func updateTask(task: Task, title: String? = nil, type: TypeTab? = nil, deadline: Date? = nil, color: TaskColor? = nil, isCompleted: Bool? = nil) {
         let id = task.objectID.uriRepresentation().absoluteString
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+        fetchRequest.predicate = NSPredicate(format: "title = %@", task.title ?? "")
         do {
             let results = try viewContext.fetch(fetchRequest) as? [Task]
             if let results = results, !results.isEmpty {
@@ -117,12 +118,41 @@ extension DataStoreManager: DataProvider {
                         if let isCompleted = isCompleted {
                             result.setValue(isCompleted, forKey: "isCompleted")
                         }
+                        
+                        do {
+                            try viewContext.save()
+                        } catch let error {
+                            print(error)
+                        }
+                        
+                        break
                     }
-                    
-                    do {
-                        try viewContext.save()
-                    } catch let error {
-                        print(error)
+                }
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func deleteTask(task: Task) {
+        let id = task.objectID.uriRepresentation().absoluteString
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+        fetchRequest.predicate = NSPredicate(format: "title = %@", task.title ?? "")
+        
+        do {
+            let results = try viewContext.fetch(fetchRequest) as? [Task]
+            if let results = results, !results.isEmpty {
+                for result in results {
+                    if id == result.objectID.uriRepresentation().absoluteString {
+                        viewContext.delete(result)
+                        
+                        do {
+                            try viewContext.save()
+                        } catch let error {
+                            print(error)
+                        }
+                        
+                        break
                     }
                 }
             }
