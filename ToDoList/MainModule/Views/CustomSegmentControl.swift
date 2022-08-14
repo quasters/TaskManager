@@ -12,6 +12,7 @@ import RxCocoa
 final class CustomSegmentControl: UIView {
     var values: Observable<Int>?
     private var tabTitles: [String]?
+    private var currentTab = 0
     private var height: Double = 0
     private var width: Double = 0
     
@@ -20,10 +21,13 @@ final class CustomSegmentControl: UIView {
     
     private let disposeBag = DisposeBag()
     
-    func configurate(tabTitles: [String], height: Double, width: Double) {
+    func configurate(tabTitles: [String], currentTab: Int? = 0, height: Double, width: Double) {
         self.tabTitles = tabTitles
         self.height = height
         self.width = width
+        if let currentTab = currentTab, tabTitles.count > currentTab, currentTab >= 0 {
+            self.currentTab = currentTab
+        }
         setUpSegmentControl()
     }
     
@@ -44,7 +48,9 @@ final class CustomSegmentControl: UIView {
     }
     
     private func setUpSelector() {
-        selector.frame = CGRect(x: 0, y: 0, width: width / Double(buttons.count), height: height)
+        let selectorPosition = self.width / Double(self.buttons.count) * Double(currentTab)
+        
+        selector.frame = CGRect(x: selectorPosition, y: 0, width: width / Double(buttons.count), height: height)
         selector.backgroundColor = UIColor(named: "blackAdaptive")
         selector.layer.cornerRadius = height / 2
         selector.layer.masksToBounds = false
@@ -57,12 +63,6 @@ final class CustomSegmentControl: UIView {
         guard let tabTitles = tabTitles else { return }
         for (index, title) in tabTitles.enumerated() {
             let button = UIButton(type: .system)
-            if index == 0 {
-                button.setTitleColor(.systemBackground, for: .normal)
-                button.isEnabled = false
-            } else {
-                button.setTitleColor(UIColor(named: "blackAdaptive"), for: .normal)
-            }
             button.tag = index
             button.setTitle(title, for: .normal)
             buttons.append(button)
@@ -76,7 +76,7 @@ final class CustomSegmentControl: UIView {
             .map { ($0.rx.tap, $0.tag) }
             .map { obs, tag in obs.map { tag } }
         
-        values = Observable.merge(tags).startWith(0)
+        values = Observable.merge(tags).startWith(currentTab)
         
         values?
             .observe(on: MainScheduler.instance)

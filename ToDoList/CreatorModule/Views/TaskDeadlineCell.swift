@@ -12,11 +12,17 @@ import RxCocoa
 final class TaskDeadlineCell: UITableViewCell {
     let picker = UIDatePicker()
     
-    func configure() {
+    func configure(deadline: Date? = nil) {
         self.selectionStyle = .none
         self.contentView.isUserInteractionEnabled = true
         
-        picker.minimumDate = Date.now
+        if let deadline = deadline {
+            picker.date = deadline
+            picker.minimumDate = deadline
+        } else {
+            picker.minimumDate = Date.now
+        }
+        
         picker.locale = Locale(identifier: "ru_RU")
         
         self.addSubview(picker)

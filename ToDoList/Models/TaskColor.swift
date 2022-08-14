@@ -27,6 +27,17 @@ enum TaskColor: String, CaseIterable {
         }
     }
     
+    func getId() -> Int {
+        switch self {
+        case .yellow: return 0
+        case .green: return 1
+        case .blue: return 2
+        case .purple: return 3
+        case .orange: return 4
+        case .red: return 5
+        }
+    }
+    
     func getColor() -> UIColor {
         switch self {
         case .yellow:

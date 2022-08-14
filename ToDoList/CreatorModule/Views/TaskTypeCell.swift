@@ -17,11 +17,11 @@ final class TaskTypeCell: UITableViewCell {
     
     private let sideIndent: Double = 20
     
-    func configure(height: Double, width: Double) {
+    func configure(height: Double, width: Double, currentTab: Int? = nil) {
         self.selectionStyle = .none
         self.contentView.isUserInteractionEnabled = true
         
-        typeSegment.configurate(tabTitles: tabs, height: height, width: width)
+        typeSegment.configurate(tabTitles: tabs, currentTab: currentTab, height: height, width: width)
         
         self.addSubview(typeSegment)
         setConstraints()

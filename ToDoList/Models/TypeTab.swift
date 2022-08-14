@@ -20,4 +20,12 @@ enum TypeTab: String {
         default: self = .basic
         }
     }
+    
+    func getId() -> Int {
+        switch self {
+        case .basic: return 0
+        case .urgent: return 1
+        case.important: return 2
+        }
+    }
 }

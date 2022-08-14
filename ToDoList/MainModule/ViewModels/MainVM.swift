@@ -11,7 +11,7 @@ import RxCocoa
 
 protocol MainVMProtocol {
     var tasks: PublishSubject<[Task]?> { get }
-    func swiftchToCreatorModule(isEditing: Bool)
+    func swiftchToCreatorModule(editTask: Task?)
     func updateTasks(currentTab: MainTab)
 }
 
@@ -31,7 +31,7 @@ final class MainVM: MainVMProtocol {
         tasks.onNext(data)
     }
     
-    func swiftchToCreatorModule(isEditing: Bool) {
-        router?.creatorModule(isEditing: isEditing)
+    func swiftchToCreatorModule(editTask: Task? = nil) {
+        router?.creatorModule(editTask: editTask)
     }
 }

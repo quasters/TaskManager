@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class TaskListView: UIView {
-    let edit = PublishSubject<Void>()
+    let editTask = PublishSubject<Task>()
     private let disposeBag = DisposeBag()
     private let tableView = UITableView()
     
@@ -63,7 +63,7 @@ extension TaskListView: UITableViewDataSource, UITableViewDelegate {
         cell.editButton
             .rx.tap
             .bind { [weak self] event in
-                self?.edit.onNext(event)
+                self?.editTask.onNext(task)
             }
             .disposed(by: disposeBag)
         

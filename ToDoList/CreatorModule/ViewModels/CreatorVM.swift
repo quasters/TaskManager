@@ -9,20 +9,20 @@ import RxSwift
 import RxCocoa
 
 protocol CreatorVMProtocol {
-    var isEditing: Bool { get }
+    var editTask: Task? { get }
     func save(title: String, type: TypeTab, deadline: Date, color: TaskColor)
     func popToRoot()
 }
 
 final class CreatorVM: CreatorVMProtocol {
     private var router: RouterProtocol?
-    var isEditing = false
+    var editTask: Task? = nil
     
     private let dataProvider: DataProvider = DataStoreManager.shared
     
-    init(router: RouterProtocol, isEditing: Bool) {
+    init(router: RouterProtocol, editTask: Task?) {
         self.router = router
-        self.isEditing = isEditing
+        self.editTask = editTask
     }
     
     func save(title: String, type: TypeTab, deadline: Date, color: TaskColor) {

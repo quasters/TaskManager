@@ -9,6 +9,6 @@ import UIKit
 
 protocol AsselderBuilderProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController
-    func createCreatorModule(router: RouterProtocol, isEditing: Bool) -> UIViewController
+    func createCreatorModule(router: RouterProtocol, editTask: Task?) -> UIViewController
 }
 

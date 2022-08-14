@@ -10,13 +10,16 @@ import UIKit
 class TaskTitleCell: UITableViewCell {
     let textField = UITextField()
     
-    func configure() {
+    func configure(title: String? = nil) {
         self.selectionStyle = .none
         self.contentView.isUserInteractionEnabled = true
         
         textField.delegate = self
         
         textField.placeholder = "Buy milk"
+        if let title = title {
+            textField.text = title
+        }
         
         self.addSubview(textField)
         setConstraints()

@@ -16,14 +16,19 @@ final class ColorPickerCell: UITableViewCell {
     private var stack = UIStackView()
     
     private var radius: Double = 15
+    private var startColor = TaskColor(colorId: 0)
         
     private let disposeBag = DisposeBag()
     
-    func configure(radius: Double) {
+    func configure(radius: Double, startColor: TaskColor? = nil) {
         self.selectionStyle = .none
         self.contentView.isUserInteractionEnabled = true
         
         self.radius = radius
+        
+        if let startColor = startColor {
+            self.startColor = startColor
+        }
         
         setUpStack()
         setUpButtons()
@@ -50,7 +55,7 @@ final class ColorPickerCell: UITableViewCell {
             button.layer.masksToBounds = false
             button.backgroundColor = color.getColor()
             button.layer.borderColor = UIColor(named: "blackAdaptive")?.cgColor
-            if index == 0 {
+            if color == startColor {
                 button.layer.borderWidth = 1
                 button.isEnabled = false
             }
@@ -66,7 +71,7 @@ final class ColorPickerCell: UITableViewCell {
         let tags = colorButtons
             .map { ($0.rx.tap, $0.tag) }
             .map { obs, tag in obs.map { tag } }
-        values = Observable.merge(tags).startWith(0)
+        values = Observable.merge(tags).startWith(startColor.getId())
         
         values?
             .observe(on: MainScheduler.instance)

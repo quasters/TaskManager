@@ -38,13 +38,13 @@ final class CreatorVC: UIViewController {
         self.title = "Edit Task"
         self.navigationController?.navigationBar.tintColor = UIColor(named: "blackAdaptive")
         
-        if let isEditing = viewModel?.isEditing, isEditing {
+        if (viewModel?.editTask) != nil {
             deleteButton.image = UIImage(systemName: "trash")
             deleteButton.tintColor = .red
             self.navigationItem.rightBarButtonItem = deleteButton
             
             deleteButton.rx.tap.bind(onNext: { [weak self] in
-                
+                // FIXME: - add saving updates
                 self?.viewModel?.popToRoot()
             }).disposed(by: disposeBag)
         }
@@ -52,7 +52,7 @@ final class CreatorVC: UIViewController {
     
     private func setTaskConfigurationView() {
         taskConfigurationView = TaskConfigurationView()
-        taskConfigurationView?.configure()
+        taskConfigurationView?.configure(task: viewModel?.editTask)
         
         self.view.addSubview(taskConfigurationView!)
         setTaskConfigurationViewConstraints()

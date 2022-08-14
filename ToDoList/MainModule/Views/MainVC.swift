@@ -88,7 +88,7 @@ final class MainVC: UIViewController {
         bottomButtonView.configure()
         
         bottomButtonView.button.rx.tap.bind { [weak self] in
-            self?.viewModel?.swiftchToCreatorModule(isEditing: false)
+            self?.viewModel?.swiftchToCreatorModule(editTask: nil)
         }.disposed(by: disposeBag)
     }
     
@@ -110,10 +110,10 @@ final class MainVC: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        listView?.edit
+        listView?.editTask
             .observe(on: MainScheduler.instance)
-            .bind(onNext: { [weak self] in
-                self?.viewModel?.swiftchToCreatorModule(isEditing: true)
+            .bind(onNext: { [weak self] task in
+                self?.viewModel?.swiftchToCreatorModule(editTask: task)
             })
             .disposed(by: disposeBag)
     }

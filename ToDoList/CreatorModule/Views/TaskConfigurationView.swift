@@ -15,10 +15,14 @@ class TaskConfigurationView: UIView {
     let deadline = PublishSubject<Date>()
     let type = PublishSubject<TypeTab>()
     
+    private var task: Task?
+    
     private let tableView = UITableView()
     private let disposeBag = DisposeBag()
     
-    func configure()  {
+    func configure(task: Task? = nil) {
+        self.task = task
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isScrollEnabled = false
@@ -57,11 +61,13 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
         return title[section]
     }
 
+    // FIXME: - update configurates()
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
             let cell = ColorPickerCell()
-            cell.configure(radius: 15)
+            
+            cell.configure(radius: 15, startColor: TaskColor(rawValue: task?.color ?? ""))
             
             cell.values?
                 .bind(onNext: { [weak self] colorId in
@@ -72,7 +78,8 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
             
         case 1:
             let cell = TaskDeadlineCell()
-            cell.configure()
+            cell.configure(deadline: task?.deadline)
+
             
             cell.picker.rx.date
                 .bind { date in
@@ -83,7 +90,7 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
             
         case 2:
             let cell = TaskTitleCell()
-            cell.configure()
+            cell.configure(title: task?.title)
             
             cell.textField.rx.text
                 .bind { [weak self] value in
@@ -95,7 +102,7 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
         case 3:
             let cell = TaskTypeCell()
             let width = self.bounds.width - 40
-            cell.configure(height: 38, width: width)
+            cell.configure(height: 38, width: width, currentTab: TypeTab(rawValue: task?.type ?? "")?.getId())
             
             cell.typeSegment.values?
                 .bind(onNext: { [weak self] id in
