@@ -27,26 +27,14 @@ enum TaskColor: String, CaseIterable {
         }
     }
     
-//    static func getName(by colorId: Int) -> String {
-//        switch colorId {
-//        case 0: return "Yellow"
-//        case 1: return "Green"
-//        case 2: return "Blue"
-//        case 3: return "Purple"
-//        case 4: return "Orange"
-//        case 5: return "Red"
-//        default: return "Yellow"
-//        }
-//    }
-    
     func getColor() -> UIColor {
         switch self {
         case .yellow:
-            return .yellow
+            return #colorLiteral(red: 0.9557898672, green: 0.9359652029, blue: 0.05191622707, alpha: 1)
         case .green:
-            return .systemMint
+            return #colorLiteral(red: 0, green: 0.7812903523, blue: 0.7460705638, alpha: 1)
         case .blue:
-            return .systemCyan
+            return #colorLiteral(red: 0.1962621808, green: 0.6769673824, blue: 0.9034142494, alpha: 1)
         case .purple:
             let color = #colorLiteral(red: 0.9422228345, green: 0.6805697546, blue: 1, alpha: 1)
             return color

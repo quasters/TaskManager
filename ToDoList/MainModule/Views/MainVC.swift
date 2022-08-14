@@ -16,6 +16,8 @@ final class MainVC: UIViewController {
     private var listView: TaskListView?
     private var bottomButtonView: BottomButtonView?
     
+    private var currentTab = MainTab(id: 0)
+    
     private let disposeBag = DisposeBag()
     
     private let sideIndent: Double = 10
@@ -28,6 +30,11 @@ final class MainVC: UIViewController {
         setAddButton()
         
         binding()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel?.updateTasks(currentTab: currentTab)
     }
     
     // MARK: Set up UI Elements
@@ -81,10 +88,11 @@ final class MainVC: UIViewController {
         bottomButtonView.configure()
         
         bottomButtonView.button.rx.tap.bind { [weak self] in
-            self?.viewModel?.swiftchToCreatorModule()
+            self?.viewModel?.swiftchToCreatorModule(isEditing: false)
         }.disposed(by: disposeBag)
     }
     
+    // MARK: - Rx Bindings
     func binding() {
         self.viewModel?.tasks
             .observe(on: MainScheduler.instance)
@@ -96,7 +104,16 @@ final class MainVC: UIViewController {
         daySegment?.values?
             .observe(on: MainScheduler.instance)
             .bind(onNext: { [weak self] tabId in
+                self?.currentTab = MainTab(id: tabId)
                 self?.viewModel?.updateTasks(currentTab: MainTab(id: tabId))
+                self?.listView?.isFailed = MainTab(id: tabId) == .fail
+            })
+            .disposed(by: disposeBag)
+        
+        listView?.edit
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] in
+                self?.viewModel?.swiftchToCreatorModule(isEditing: true)
             })
             .disposed(by: disposeBag)
     }

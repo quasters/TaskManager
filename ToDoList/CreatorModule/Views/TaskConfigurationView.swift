@@ -11,14 +11,12 @@ import RxCocoa
 
 class TaskConfigurationView: UIView {
     let title = PublishSubject<String?>()
-    let color = PublishSubject<String>()
+    let color = PublishSubject<TaskColor>()
     let deadline = PublishSubject<Date>()
     let type = PublishSubject<TypeTab>()
     
     private let tableView = UITableView()
     private let disposeBag = DisposeBag()
-    
-    private let task = Task()
     
     func configure()  {
         tableView.delegate = self
@@ -67,7 +65,7 @@ extension TaskConfigurationView: UITableViewDataSource, UITableViewDelegate {
             
             cell.values?
                 .bind(onNext: { [weak self] colorId in
-                    self?.color.onNext(TaskColor(colorId: colorId).rawValue)
+                    self?.color.onNext(TaskColor(colorId: colorId))
                 })
                 .disposed(by: disposeBag)
             return cell

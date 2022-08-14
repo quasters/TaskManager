@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TaskListView: UIView {
-    let tableView = UITableView()
+    let edit = PublishSubject<Void>()
+    private let disposeBag = DisposeBag()
+    private let tableView = UITableView()
     
+    var isFailed = false
     var tasks: [Task]? {
         didSet {
             tableView.reloadData()
@@ -17,8 +22,6 @@ class TaskListView: UIView {
     }
     
     func configure() {
-        //tasks = DataStoreManager.shared.getTasks(currentTab: .done)
-
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -38,7 +41,7 @@ class TaskListView: UIView {
 
 extension TaskListView: UITableViewDataSource, UITableViewDelegate {    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return 190
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,7 +52,27 @@ extension TaskListView: UITableViewDataSource, UITableViewDelegate {
         let cell = TaskCell()
         let task = tasks![indexPath.row]
         cell.contentView.isUserInteractionEnabled = true
-        cell.configure(title: task.title, category: task.type, isCompleted: task.isCompleted)
+        let color = TaskColor(rawValue: task.color ?? "")
+        cell.configure(title: task.title,
+                       category: task.type,
+                       date: task.deadline,
+                       color: color,
+                       isCompleted: task.isCompleted,
+                       isFailed: isFailed)
+        
+        cell.editButton
+            .rx.tap
+            .bind { [weak self] event in
+                self?.edit.onNext(event)
+            }
+            .disposed(by: disposeBag)
+        
+//        cell.doneButton
+//            .rx.tap
+//            .bind { [weak self] in
+//                self?.tableView.reloadData()
+//            }
+//            .disposed(by: disposeBag)
         
         return cell
     }

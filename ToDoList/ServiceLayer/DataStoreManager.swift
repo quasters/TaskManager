@@ -37,26 +37,12 @@ class DataStoreManager {
             }
         }
     }
-//    
-//    func defaultValue() -> Task {
-//        let task = Task(context: viewContext)
-//        task.color = TaskColor.yellow.rawValue
-//        task.deadline = Date.now
-//        task.isCompleted = true
-//        task.title = "Test2"
-//        task.type = "Basic"
-//        
-//        do {
-//            try viewContext.save()
-//        } catch let error {
-//            print(error)
-//        }
-//        
-//        return task
-//    }
-    
+}
+
+extension DataStoreManager: DataProvider {
     func getTasks(currentTab: MainTab) -> [Task]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "deadline", ascending: true)]
         let calendar = Calendar.current
         
         switch currentTab {
@@ -86,13 +72,29 @@ class DataStoreManager {
             fetchRequest.predicate = NSPredicate(format: "\(filterKey) < %@ AND isCompleted = False", argumentArray: [today])
         }
         
-        
         guard let tasks = try? viewContext.fetch(fetchRequest) as? [Task], !tasks.isEmpty else { return nil }
+        
         return tasks
     }
     
-    func updateTask(with name: String) {
+    func saveNewTask(title: String, type: TypeTab, deadline: Date, color: TaskColor) {
+        let task = Task(context: viewContext)
         
+        task.title = title
+        task.type = type.rawValue
+        task.deadline = deadline
+        task.color = color.rawValue
+        
+        task.isCompleted = false
+        
+        do {
+            try viewContext.save()
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func updateTask() {
         
     }
 }

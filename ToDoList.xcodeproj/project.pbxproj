@@ -196,8 +196,8 @@
 		D1AC201028A5A47200AA6D17 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				D1AC201128A5A4AA00AA6D17 /* DataStoreManager.swift */,
 				D17D292E28A85F1C00D7CB0C /* DataProvider.swift */,
+				D1AC201128A5A4AA00AA6D17 /* DataStoreManager.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";

@@ -8,27 +8,48 @@
 import UIKit
 import RxSwift
 
+// FIXME: - add data of edit cell
 final class CreatorVC: UIViewController {
     var viewModel: CreatorVMProtocol?
     
+    private var deleteButton = UIBarButtonItem()
     private var saveButton: UIButton?
     private var taskConfigurationView: TaskConfigurationView?
+    
+    private var taskTitle: String?
+    private var taskType: TypeTab?
+    private var taskDeadline: Date?
+    private var taskColor: TaskColor?
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        self.title = "Edit Task"
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "blackAdaptive")
         
-        
+        setNavBar()
         setSaveButton()
         setTaskConfigurationView()
         bind()
     }
     
     // MARK: - Set UI Elements
+    private func setNavBar() {
+        self.title = "Edit Task"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "blackAdaptive")
+        
+        if let isEditing = viewModel?.isEditing, isEditing {
+            deleteButton.image = UIImage(systemName: "trash")
+            deleteButton.tintColor = .red
+            self.navigationItem.rightBarButtonItem = deleteButton
+            
+            deleteButton.rx.tap.bind(onNext: { [weak self] in
+                
+                self?.viewModel?.popToRoot()
+            }).disposed(by: disposeBag)
+        }
+    }
+    
     private func setTaskConfigurationView() {
         taskConfigurationView = TaskConfigurationView()
         taskConfigurationView?.configure()
@@ -56,16 +77,48 @@ final class CreatorVC: UIViewController {
     // MARK: - Rx Bindings
     private func bind() {
         taskConfigurationView?.title
+            .observe(on: MainScheduler.instance)
             .bind(onNext: { [weak self] title in
                 guard let title = title else { return }
                 self?.saveButton?.isEnabled = title.count > 0
+                self?.taskTitle = title
             })
             .disposed(by: disposeBag)
         
-//        saveButton?.rx.tap.bind(onNext: { [weak self] in
-//            self?.viewModel.
-//        })
-//        .disposed(by: disposeBag)
+        taskConfigurationView?.type
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] type in
+                self?.taskType = type
+            })
+            .disposed(by: disposeBag)
+        
+        taskConfigurationView?.deadline
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] deadline in
+                self?.taskDeadline = deadline
+            })
+            .disposed(by: disposeBag)
+        
+        taskConfigurationView?.color
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] color in
+                self?.taskColor = color
+            })
+            .disposed(by: disposeBag)
+        
+        saveButton?
+            .rx.tap
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] in                
+                guard let title = self?.taskTitle else { return }
+                guard let type = self?.taskType else { return }
+                guard let deadline = self?.taskDeadline else { return }
+                guard let color = self?.taskColor else { return }
+                
+                self?.viewModel?.save(title: title, type: type, deadline: deadline, color: color)
+                self?.viewModel?.popToRoot()
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Constraints

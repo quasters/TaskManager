@@ -7,10 +7,8 @@
 
 import Foundation
 
-protocol DataProviderProtocol {
-    
+protocol DataProvider {
+    func getTasks(currentTab: MainTab) -> [Task]?
+    func saveNewTask(title: String, type: TypeTab, deadline: Date, color: TaskColor)
 }
 
-class DataProvider: DataProviderProtocol {
-    private let dataManager = DataStoreManager.shared
-}

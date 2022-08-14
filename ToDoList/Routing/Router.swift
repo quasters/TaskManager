@@ -23,9 +23,9 @@ class Router: RouterProtocol {
         }
     }
     
-    func creatorModule() {
+    func creatorModule(isEditing: Bool) {
         if let navController = navController {
-            guard let creatorVC = builder?.createCreatorModule(router: self) else { return }
+            guard let creatorVC = builder?.createCreatorModule(router: self, isEditing: isEditing) else { return }
             navController.pushViewController(creatorVC, animated: true)
         }
     }

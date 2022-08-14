@@ -11,12 +11,13 @@ import RxCocoa
 
 protocol MainVMProtocol {
     var tasks: PublishSubject<[Task]?> { get }
-    func swiftchToCreatorModule()
+    func swiftchToCreatorModule(isEditing: Bool)
     func updateTasks(currentTab: MainTab)
 }
 
 final class MainVM: MainVMProtocol {
     private var router: RouterProtocol?
+    private var dataProvider: DataProvider = DataStoreManager.shared
     
     let tasks = PublishSubject<[Task]?>()
     let disposeBag = DisposeBag()
@@ -26,11 +27,11 @@ final class MainVM: MainVMProtocol {
     }
     
     func updateTasks(currentTab: MainTab) {
-        let data = DataStoreManager.shared.getTasks(currentTab: currentTab)
+        let data = dataProvider.getTasks(currentTab: currentTab)
         tasks.onNext(data)
     }
     
-    func swiftchToCreatorModule() {
-        router?.creatorModule()
+    func swiftchToCreatorModule(isEditing: Bool) {
+        router?.creatorModule(isEditing: isEditing)
     }
 }

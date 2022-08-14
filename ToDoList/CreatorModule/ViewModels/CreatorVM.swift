@@ -9,17 +9,27 @@ import RxSwift
 import RxCocoa
 
 protocol CreatorVMProtocol {
-    func savePopToRoot(title: String, type: TypeTab, date: Date, color: TaskColor)
+    var isEditing: Bool { get }
+    func save(title: String, type: TypeTab, deadline: Date, color: TaskColor)
+    func popToRoot()
 }
 
 final class CreatorVM: CreatorVMProtocol {
     private var router: RouterProtocol?
+    var isEditing = false
     
-    init(router: RouterProtocol) {
-        
+    private let dataProvider: DataProvider = DataStoreManager.shared
+    
+    init(router: RouterProtocol, isEditing: Bool) {
+        self.router = router
+        self.isEditing = isEditing
     }
     
-    func savePopToRoot(title: String, type: TypeTab, date: Date, color: TaskColor) {
-        
+    func save(title: String, type: TypeTab, deadline: Date, color: TaskColor) {
+        dataProvider.saveNewTask(title: title, type: type, deadline: deadline, color: color)
+    }
+    
+    func popToRoot() {
+        router?.popToRoot()
     }
 }

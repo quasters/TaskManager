@@ -9,6 +9,6 @@ import UIKit
 
 protocol RouterProtocol {    
     func initialViewConroller()
-    func creatorModule()
+    func creatorModule(isEditing: Bool)
     func popToRoot()
 }

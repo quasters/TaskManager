@@ -16,27 +16,33 @@ final class TaskCell: UITableViewCell {
     private let categoryBackView = UIView()
     private let categoryLabel = UILabel()
     private let taskLabel = UILabel()
+    private let dateLabel = UILabel()
+    private let timeLabel = UILabel()
     
-    private let deadline = Date()
+    private var deadline: Date?
     
     private let sideIndent: Double = 20
     
-    func configure(title: String?, category: String?, isCompleted: Bool) {
+    func configure(title: String?, category: String?, date: Date?, color: TaskColor?, isCompleted: Bool, isFailed: Bool) {
         self.selectionStyle = .none
         
         doneButton.backgroundColor = isCompleted ? .black : .clear
         taskLabel.text = title
         categoryLabel.text = category
+        deadline = date
         
-        setBackView()
+        setBackView(with: color)
         setCategoryView()
-        setButtons()
+        if !isFailed {
+            setButtons()
+        }
         setTaskLabel()
+        setDateLabels()
     }
     
     // MARK: - Set up views
-    private func setBackView() {
-        backView.backgroundColor = .systemYellow
+    private func setBackView(with color: TaskColor?) {
+        backView.backgroundColor = color?.getColor()
         backView.layer.cornerRadius = 12
         backView.layer.masksToBounds = false
         
@@ -45,7 +51,7 @@ final class TaskCell: UITableViewCell {
     }
     
     private func setCategoryView() {
-        categoryBackView.backgroundColor = .init(white: 1, alpha: 0.55)
+        categoryBackView.backgroundColor = .init(white: 1, alpha: 0.265)
         categoryBackView.layer.cornerRadius = 12
         categoryBackView.layer.masksToBounds = false
         
@@ -79,6 +85,25 @@ final class TaskCell: UITableViewCell {
         
         self.addSubview(taskLabel)
         setTaskLabelConstraints()
+    }
+    
+    private func setDateLabels() {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        
+        formatter.dateFormat = "d MMMM, y"
+        dateLabel.text = formatter.string(from: deadline ?? Date.now)
+        formatter.dateFormat = "HH:mm"
+        timeLabel.text = formatter.string(from: deadline ?? Date.now)
+        
+        dateLabel.font = .systemFont(ofSize: 14)
+        dateLabel.textColor = .black
+        timeLabel.font = .systemFont(ofSize: 14)
+        timeLabel.textColor = .black
+        
+        self.addSubview(dateLabel)
+        self.addSubview(timeLabel)
+        setDateLabelsConstraints()
     }
     
     // MARK: - Constraints
@@ -131,6 +156,20 @@ final class TaskCell: UITableViewCell {
             taskLabel.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: sideIndent),
             taskLabel.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -sideIndent),
             taskLabel.topAnchor.constraint(equalTo: categoryBackView.bottomAnchor, constant: 10),
+        ])
+    }
+    
+    private func setDateLabelsConstraints() {
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            timeLabel.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: sideIndent),
+            timeLabel.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -sideIndent)
+        ])
+        
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dateLabel.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: sideIndent),
+            dateLabel.bottomAnchor.constraint(equalTo: timeLabel.topAnchor, constant: -3)
         ])
     }
 }

@@ -15,8 +15,8 @@ class AsselderBuilder: AsselderBuilderProtocol {
         return viewController
     }
     
-    func createCreatorModule(router: RouterProtocol) -> UIViewController  {
-        let viewModel = CreatorVM()
+    func createCreatorModule(router: RouterProtocol, isEditing: Bool) -> UIViewController  {
+        let viewModel = CreatorVM(router: router, isEditing: isEditing)
         let viewController = CreatorVC()
         viewController.viewModel = viewModel
         return viewController
