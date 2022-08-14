@@ -115,7 +115,12 @@ final class CreatorVC: UIViewController {
                 guard let deadline = self?.taskDeadline else { return }
                 guard let color = self?.taskColor else { return }
                 
-                self?.viewModel?.save(title: title, type: type, deadline: deadline, color: color)
+                if let editTask = self?.viewModel?.editTask {
+                    self?.viewModel?.update(task: editTask, title: title, type: type, deadline: deadline, color: color)
+                } else {
+                    self?.viewModel?.save(title: title, type: type, deadline: deadline, color: color)
+                }
+                
                 self?.viewModel?.popToRoot()
             })
             .disposed(by: disposeBag)

@@ -94,7 +94,40 @@ extension DataStoreManager: DataProvider {
         }
     }
     
-    func updateTask() {
-        
+    func updateTask(task: Task, title: String? = nil, type: TypeTab? = nil, deadline: Date? = nil, color: TaskColor? = nil, isCompleted: Bool? = nil) {
+        let id = task.objectID.uriRepresentation().absoluteString
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+        do {
+            let results = try viewContext.fetch(fetchRequest) as? [Task]
+            if let results = results, !results.isEmpty {
+                for result in results {
+                    if id == result.objectID.uriRepresentation().absoluteString {
+                        if let title = title {
+                            result.setValue(title, forKey: "title")
+                        }
+                        if let type = type {
+                            result.setValue(type.rawValue, forKey: "type")
+                        }
+                        if let deadline = deadline {
+                            result.setValue(deadline, forKey: "deadline")
+                        }
+                        if let color = color {
+                            result.setValue(color.rawValue, forKey: "color")
+                        }
+                        if let isCompleted = isCompleted {
+                            result.setValue(isCompleted, forKey: "isCompleted")
+                        }
+                    }
+                    
+                    do {
+                        try viewContext.save()
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            }
+        } catch let error {
+            print(error)
+        }
     }
 }

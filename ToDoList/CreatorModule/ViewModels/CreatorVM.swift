@@ -11,6 +11,7 @@ import RxCocoa
 protocol CreatorVMProtocol {
     var editTask: Task? { get }
     func save(title: String, type: TypeTab, deadline: Date, color: TaskColor)
+    func update(task: Task, title: String, type: TypeTab, deadline: Date, color: TaskColor)
     func popToRoot()
 }
 
@@ -27,6 +28,10 @@ final class CreatorVM: CreatorVMProtocol {
     
     func save(title: String, type: TypeTab, deadline: Date, color: TaskColor) {
         dataProvider.saveNewTask(title: title, type: type, deadline: deadline, color: color)
+    }
+    
+    func update(task: Task, title: String, type: TypeTab, deadline: Date, color: TaskColor) {
+        dataProvider.updateTask(task: task, title: title, type: type, deadline: deadline, color: color, isCompleted: nil)
     }
     
     func popToRoot() {

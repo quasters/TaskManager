@@ -11,6 +11,7 @@ import RxCocoa
 
 class TaskListView: UIView {
     let editTask = PublishSubject<Task>()
+    let complitiotnTask = PublishSubject<Task>()
     private let disposeBag = DisposeBag()
     private let tableView = UITableView()
     
@@ -62,17 +63,17 @@ extension TaskListView: UITableViewDataSource, UITableViewDelegate {
         
         cell.editButton
             .rx.tap
-            .bind { [weak self] event in
+            .bind { [weak self] in
                 self?.editTask.onNext(task)
             }
             .disposed(by: disposeBag)
         
-//        cell.doneButton
-//            .rx.tap
-//            .bind { [weak self] in
-//                self?.tableView.reloadData()
-//            }
-//            .disposed(by: disposeBag)
+        cell.complitionButton
+            .rx.tap
+            .bind { [weak self] in
+                self?.complitiotnTask.onNext(task)
+            }
+            .disposed(by: disposeBag)
         
         return cell
     }

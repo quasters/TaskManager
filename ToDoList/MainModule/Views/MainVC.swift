@@ -104,9 +104,10 @@ final class MainVC: UIViewController {
         daySegment?.values?
             .observe(on: MainScheduler.instance)
             .bind(onNext: { [weak self] tabId in
-                self?.currentTab = MainTab(id: tabId)
-                self?.viewModel?.updateTasks(currentTab: MainTab(id: tabId))
-                self?.listView?.isFailed = MainTab(id: tabId) == .fail
+                guard let self = self else { return }
+                self.currentTab = MainTab(id: tabId)
+                self.viewModel?.updateTasks(currentTab: self.currentTab)
+                self.listView?.isFailed = (self.currentTab == .fail)
             })
             .disposed(by: disposeBag)
         
@@ -114,6 +115,15 @@ final class MainVC: UIViewController {
             .observe(on: MainScheduler.instance)
             .bind(onNext: { [weak self] task in
                 self?.viewModel?.swiftchToCreatorModule(editTask: task)
+            })
+            .disposed(by: disposeBag)
+        
+        listView?.complitiotnTask
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] task in
+                guard let self = self else { return }
+                self.viewModel?.updateTask(task: task, isCompleted: !task.isCompleted)
+                self.viewModel?.updateTasks(currentTab: self.currentTab)
             })
             .disposed(by: disposeBag)
     }

@@ -13,6 +13,7 @@ protocol MainVMProtocol {
     var tasks: PublishSubject<[Task]?> { get }
     func swiftchToCreatorModule(editTask: Task?)
     func updateTasks(currentTab: MainTab)
+    func updateTask(task: Task, isCompleted: Bool)
 }
 
 final class MainVM: MainVMProtocol {
@@ -29,6 +30,10 @@ final class MainVM: MainVMProtocol {
     func updateTasks(currentTab: MainTab) {
         let data = dataProvider.getTasks(currentTab: currentTab)
         tasks.onNext(data)
+    }
+    
+    func updateTask(task: Task, isCompleted: Bool) {
+        dataProvider.updateTask(task: task, title: nil, type: nil, deadline: nil, color: nil, isCompleted: isCompleted)
     }
     
     func swiftchToCreatorModule(editTask: Task? = nil) {
