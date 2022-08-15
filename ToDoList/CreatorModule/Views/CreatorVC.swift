@@ -42,13 +42,6 @@ final class CreatorVC: UIViewController {
             deleteButton.image = UIImage(systemName: "trash")
             deleteButton.tintColor = .red
             self.navigationItem.rightBarButtonItem = deleteButton
-            
-//            deleteButton.rx.tap.bind(onNext: { [weak self] in
-//                guard let VM = self?.viewModel else { return }
-//                guard let task = VM.editTask else { return }
-//                VM.delete(task: task)
-//                VM.popToRoot()
-//            }).disposed(by: disposeBag)
         }
     }
     
@@ -80,6 +73,7 @@ final class CreatorVC: UIViewController {
     private func bind() {
         if let rightBarButton = self.navigationItem.rightBarButtonItem {
             rightBarButton.rx.tap
+                .observe(on: MainScheduler.instance)
                 .bind(onNext: { [weak self] in
                     guard let VM = self?.viewModel else { return }
                     guard let task = VM.editTask else { return }
