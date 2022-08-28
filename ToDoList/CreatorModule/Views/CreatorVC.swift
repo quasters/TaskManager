@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 
-// FIXME: - add data of edit cell
 final class CreatorVC: UIViewController {
     var viewModel: CreatorVMProtocol?
     
